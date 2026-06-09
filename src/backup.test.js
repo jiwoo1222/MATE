@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { exportBackup, parseBackup } from './backup.js';
+import { exportBackup, parseBackup, restoreBackup } from './backup.js';
 
 function memoryStorage(initial = {}) {
   const map = new Map(Object.entries(initial));
@@ -44,4 +44,30 @@ test('backup validation rejects foreign keys, invalid nested words and duplicate
   ]) assert.throws(()=>parseBackup(backup(entries)));
   assert.throws(()=>parseBackup('broken'));
   assert.throws(()=>parseBackup(JSON.stringify({app:'MATE',version:2,entries:[]})));
+});
+
+test('restore adds missing records and keeps existing IDs and default deletion history', () => {
+  const storage = memoryStorage({'pack:a':JSON.stringify({...samplePack,name:'기존 이름'}),'meta:seededDefaultPacks':'["day7"]'});
+  const file = backup([{key:'pack:a',value:samplePack},{key:'pack:b',value:{...samplePack,id:'b'}},{key:'meta:seededDefaultPacks',value:['day6']}]);
+  assert.deepEqual(restoreBackup(file,storage),{added:1,skipped:1});
+  assert.equal(JSON.parse(storage.getItem('pack:a')).name,'기존 이름');
+  assert.deepEqual(JSON.parse(storage.getItem('meta:seededDefaultPacks')),['day7','day6']);
+  assert.deepEqual(restoreBackup(file,storage),{added:0,skipped:2});
+});
+
+test('quota failure rolls back every record written earlier in the restore', () => {
+  const storage = memoryStorage({'unrelated':'keep'});
+  const original = storage.setItem;
+  let calls = 0;
+  storage.setItem = (key,value) => { if (++calls === 2) throw new Error('quota'); original(key,value); };
+  const file = backup([{key:'pack:a',value:samplePack},{key:'pack:b',value:{...samplePack,id:'b'}}]);
+  assert.throws(()=>restoreBackup(file,storage),/변경을 되돌렸습니다/);
+  assert.equal(storage.length,1);
+  assert.equal(storage.getItem('unrelated'),'keep');
+});
+
+test('invalid restore input performs no storage writes', () => {
+  const storage = memoryStorage();
+  storage.setItem = () => { throw new Error('must not write'); };
+  assert.throws(()=>restoreBackup(backup([{key:'pack:a',value:samplePack},{key:'invalid',value:{}}]),storage),/허용되지/);
 });

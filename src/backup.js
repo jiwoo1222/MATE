@@ -57,5 +57,40 @@ export function exportBackup(storage = globalThis.localStorage) {
   });
   return JSON.stringify({ app: 'MATE', version: 1, createdAt: Date.now(), entries }, null, 2);
 }
+
+export function restoreBackup(text, storage = globalThis.localStorage) {
+  const entries = parseBackup(text);
+  const writes = [];
+  let added = 0;
+  let skipped = 0;
+  for (const {key,value} of entries) {
+    const previous = storage.getItem(key);
+    if (key === MARKER) {
+      let existing;
+      try { existing = previous === null ? [] : JSON.parse(previous); } catch { throw new Error('기존 기본팩 이력을 읽지 못했어요.'); }
+      if (!Array.isArray(existing) || existing.some(item => typeof item !== 'string')) throw new Error('기존 기본팩 이력 형식을 확인해주세요.');
+      writes.push({key, previous, next:JSON.stringify([...new Set([...existing,...value])])});
+    } else if (previous !== null) skipped++;
+    else { writes.push({key, previous, next:JSON.stringify(value)}); added++; }
+  }
+  const written = [];
+  try {
+    for (const write of writes) {
+      storage.setItem(write.key, write.next);
+      written.push(write);
+    }
+  } catch {
+    let rollbackFailed = false;
+    for (const {key,previous} of written.reverse()) {
+      try {
+        if (previous === null) storage.removeItem(key);
+        else storage.setItem(key, previous);
+      } catch { rollbackFailed = true; }
+    }
+    if (rollbackFailed) throw new Error('복원을 완료하지 못했고 일부 변경을 되돌리지 못했어요. 현재 데이터를 백업하고 확인해주세요.');
+    throw new Error('복원하지 못했어요. 변경을 되돌렸습니다. 브라우저 저장 공간과 권한을 확인해주세요.');
+  }
+  return {added, skipped};
+}
 import { validateWords } from './words.js';
 
