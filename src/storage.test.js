@@ -1,6 +1,6 @@
 import { test, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
-import { getJSON, setJSON, deleteKey, seedPacks } from './storage.js';
+import { listKeys, getJSON, setJSON, deleteKey, seedPacks } from './storage.js';
 
 beforeEach(() => {
   const data = new Map();
@@ -37,4 +37,14 @@ test('corrupt JSON is reported without removing the original value', async () =>
   localStorage.setItem('pack:a', '{broken');
   await assert.rejects(getJSON('pack:a'), /읽지 못했어요/);
   assert.equal(localStorage.getItem('pack:a'), '{broken');
+});
+
+test('blocked storage reads and deletes produce actionable errors', async () => {
+  localStorage.getItem = () => { throw new Error('SecurityError'); };
+  localStorage.removeItem = () => { throw new Error('SecurityError'); };
+  localStorage.key = () => { throw new Error('SecurityError'); };
+  localStorage.setItem('pack:a', '{}');
+  await assert.rejects(getJSON('pack:a'), /읽지 못했어요/);
+  await assert.rejects(deleteKey('pack:a'), /삭제하지 못했어요/);
+  await assert.rejects(listKeys('pack:'), /권한/);
 });
