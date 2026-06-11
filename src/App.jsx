@@ -1575,6 +1575,23 @@ export default function App() {
 
   const queryClient = useQueryClient();
 
+  useEffect(() => {
+    function refreshStoredData(event) {
+      if (event.storageArea !== window.localStorage) return;
+      if (event.key === null || event.key.startsWith("pack:") || event.key === SEEDED_DEFAULTS_KEY) {
+        void queryClient.invalidateQueries({ queryKey: ["packs"] });
+      }
+      if (event.key === null || event.key.startsWith("wrongnote:")) {
+        void queryClient.invalidateQueries({ queryKey: ["wrongMap"] });
+      }
+      if (event.key === null || event.key.startsWith("history:")) {
+        void queryClient.invalidateQueries({ queryKey: ["history"] });
+      }
+    }
+    window.addEventListener("storage", refreshStoredData);
+    return () => window.removeEventListener("storage", refreshStoredData);
+  }, [queryClient]);
+
 const {
   data: packs = [],
   isLoading: loadingPacks,
