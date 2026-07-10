@@ -1,6 +1,7 @@
 import { buildQuiz, isCorrectAnswer } from "./quiz.js";
 import { parseBulkInput, validateWords } from "./words.js";
 import { listKeys, getJSON, setJSON, deleteKey, seedPacks } from "./storage.js";
+import BackupPanel from "./BackupPanel.jsx";
 import { useState, useEffect, useMemo, useRef } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
@@ -653,7 +654,7 @@ function HomeScreen({ packs, loading, wrongMap, onStart, onGoPacks, onGoWrongnot
   );
 }
 
-function PacksListScreen({ packs, loading, onStart, onGoManual, onEdit, onDelete, onAddDefault }) {
+function PacksListScreen({ packs, loading, onStart, onGoManual, onEdit, onDelete, onAddDefault, onRestored }) {
   const addedKeys = new Set(packs.map((p) => p.sourceKey).filter(Boolean));
   const availableDefaults = DEFAULT_PACKS.filter((dp) => !addedKeys.has(dp.key));
 
@@ -699,6 +700,8 @@ function PacksListScreen({ packs, loading, onStart, onGoManual, onEdit, onDelete
           </div>
         </div>
       )}
+
+      <BackupPanel onRestored={onRestored} />
 
       <div className="px-5 flex flex-col gap-3">
         {loading && (
@@ -1810,6 +1813,13 @@ const [pendingQuiz, setPendingQuiz] = useState(null);
           }}
           onDelete={(id) => runAction(() => handleDeletePack(id))}
           onAddDefault={(pack) => runAction(() => handleAddDefaultPack(pack))}
+          onRestored={async () => {
+            await Promise.all([
+              queryClient.invalidateQueries({ queryKey: ["packs"] }),
+              queryClient.invalidateQueries({ queryKey: ["wrongMap"] }),
+              queryClient.invalidateQueries({ queryKey: ["history"] }),
+            ]);
+          }}
         />
       );
     } else if (packsStep === "manual") {
