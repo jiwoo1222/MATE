@@ -35,7 +35,8 @@ export async function deleteKey(key) {
 
 export async function seedPacks(defaults, buildPack) {
   const marker = 'meta:seededDefaultPacks';
-  const seeded = new Set((await getJSON(marker)) || []);
+  const previous = (await getJSON(marker)) || [];
+  const seeded = new Set(previous);
   for (const key of await listKeys('pack:')) {
     const pack = await getJSON(key);
     if (pack?.sourceKey) seeded.add(pack.sourceKey);
@@ -46,5 +47,6 @@ export async function seedPacks(defaults, buildPack) {
     await setJSON('pack:' + created.id, created);
     seeded.add(pack.key);
   }
-  await setJSON(marker, [...seeded]);
+  const next = [...seeded];
+  if (JSON.stringify(previous) !== JSON.stringify(next)) await setJSON(marker, next);
 }

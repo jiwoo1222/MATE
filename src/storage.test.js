@@ -48,3 +48,11 @@ test('blocked storage reads and deletes produce actionable errors', async () => 
   await assert.rejects(deleteKey('pack:a'), /삭제하지 못했어요/);
   await assert.rejects(listKeys('pack:'), /권한/);
 });
+
+test('loading seeded packs does not write unchanged markers or trigger other tabs', async () => {
+  const defaults = [{ key: 'day6' }];
+  const build = (pack) => ({ id: 'first', sourceKey: pack.key });
+  await seedPacks(defaults, build);
+  localStorage.setItem = () => { throw new Error('unexpected write'); };
+  await seedPacks(defaults, build);
+});
