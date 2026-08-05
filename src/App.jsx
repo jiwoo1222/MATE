@@ -1,4 +1,4 @@
-import { buildQuiz } from "./quiz.js";
+import { buildQuiz, isCorrectAnswer } from "./quiz.js";
 import { parseBulkInput, validateWords } from "./words.js";
 import { listKeys, getJSON, setJSON, deleteKey, seedPacks } from "./storage.js";
 import { useState, useEffect, useMemo, useRef } from "react";
@@ -980,9 +980,6 @@ function QuizScreen({ words, label, mode, onFinish, onExit }) {
   const choice = isChoiceMode(mode);
   const answerLang = answerLangOf(mode);
   const current = words[idx];
-  const meaningsList = current
-    ? (current.meanings && current.meanings.length ? current.meanings : splitMeanings(current.ko))
-    : [];
   const correctAnswer = current
     ? answerLang === "en" ? current.en : choice ? current.questionAnswer : current.ko
     : "";
@@ -1050,10 +1047,7 @@ function QuizScreen({ words, label, mode, onFinish, onExit }) {
     const cleanInput = normalize(inputValue);
     if (!cleanInput) return;
     submittedRef.current = true;
-    const correct =
-      answerLang === "en"
-        ? cleanInput.toLowerCase() === normalize(correctAnswer).toLowerCase()
-        : meaningsList.some((m) => normalize(m) === cleanInput);
+    const correct = isCorrectAnswer(cleanInput, current, mode);
     setLocked(true);
     setWasCorrect(correct);
     advance(correct, current);

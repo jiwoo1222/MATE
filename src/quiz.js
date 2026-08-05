@@ -7,8 +7,16 @@ export function shuffle(values) {
   return result;
 }
 
-const normalize = (value) => String(value).trim().replace(/\s+/g, ' ').toLowerCase();
+const normalize = (value) => String(value).normalize('NFC').trim().replace(/\s+/g, ' ').toLowerCase();
 const meaningsOf = (word) => String(word.ko).split(',').map((s) => s.trim()).filter(Boolean);
+
+export function isCorrectAnswer(input, word, mode) {
+  const answer = normalize(input);
+  if (!answer) return false;
+  return mode === 'en-input'
+    ? answer === normalize(word.en)
+    : meaningsOf(word).some((meaning) => normalize(meaning) === answer);
+}
 
 export function buildQuiz(words, mode, fallbackWords = []) {
   const english = mode.startsWith('en-');

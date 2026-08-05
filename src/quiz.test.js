@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { buildQuiz } from './quiz.js';
+import { buildQuiz, isCorrectAnswer } from './quiz.js';
 
 const words = [
   { en: 'apple', ko: '사과, 사과나무' },
@@ -27,4 +27,12 @@ test('quiz preparation does not change saved pack data', () => {
   const before = structuredClone(words);
   buildQuiz(words, 'ko-choice');
   assert.deepEqual(words, before);
+});
+
+test('typed answers accept equivalent Unicode and normalized whitespace', () => {
+  assert.ok(isCorrectAnswer('사과'.normalize('NFD'), words[0], 'ko-input'));
+  assert.ok(isCorrectAnswer('  DUE   TO ', { en: 'due to' }, 'en-input'));
+  assert.ok(isCorrectAnswer('사과나무', words[0], 'ko-input'));
+  assert.ok(!isCorrectAnswer(' ', words[0], 'ko-input'));
+  assert.ok(!isCorrectAnswer('과일', words[0], 'ko-input'));
 });
