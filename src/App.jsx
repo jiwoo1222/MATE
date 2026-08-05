@@ -975,6 +975,7 @@ function QuizScreen({ words, label, mode, onFinish, onExit }) {
   const startRef = useRef(0);
   const timerRef = useRef(null);
   const submittedRef = useRef(false);
+  const composingRef = useRef(false);
   const inputRef = useRef(null);
 
   const choice = isChoiceMode(mode);
@@ -1043,7 +1044,7 @@ function QuizScreen({ words, label, mode, onFinish, onExit }) {
 
   function handleSubmitInput(e) {
     e.preventDefault();
-    if (submittedRef.current) return;
+    if (submittedRef.current || composingRef.current) return;
     const cleanInput = normalize(inputValue);
     if (!cleanInput) return;
     submittedRef.current = true;
@@ -1141,6 +1142,13 @@ function QuizScreen({ words, label, mode, onFinish, onExit }) {
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
+              onCompositionStart={() => { composingRef.current = true; }}
+              onCompositionEnd={() => { composingRef.current = false; }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && (e.nativeEvent.isComposing || e.keyCode === 229)) {
+                  e.preventDefault();
+                }
+              }}
               disabled={locked}
               placeholder={answerLang === "en" ? "영어 단어를 입력하세요" : "한국어 뜻을 입력하세요"}
               className={`w-full px-4 py-3.5 rounded-2xl text-[16px] font-medium shadow-sm outline-none border-2 transition-colors ${
