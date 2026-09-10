@@ -3,7 +3,7 @@ export const MAX_WORDS = 60;
 export function parseBulkInput(text) {
   const words = [];
   const invalidLines = [];
-  text.split(/\r?\n/).forEach((line, index) => {
+  text.split(/\r\n|\n|\r/).forEach((line, index) => {
     if (!line.trim()) return;
     let en, ko, related = '';
     if (line.includes('|')) {

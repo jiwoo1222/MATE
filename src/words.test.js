@@ -31,3 +31,9 @@ test('extra pipe-separated columns are reported instead of silently discarded', 
   assert.deepEqual(result.invalidLines, [1]);
   assert.deepEqual(result.words, [{ en: 'book', ko: '책', related: '' }]);
 });
+
+test('bulk import accepts CR-only and mixed line endings without merging words', () => {
+  const result = parseBulkInput('apple, 사과\rbook, 책\r\ninvalid\ntree, 나무');
+  assert.deepEqual(result.words.map((word) => word.en), ['apple', 'book', 'tree']);
+  assert.deepEqual(result.invalidLines, [3]);
+});
