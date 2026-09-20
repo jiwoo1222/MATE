@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo, useRef } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 import {
   Home,
@@ -1703,42 +1704,39 @@ export default function App() {
   const [savedPack, setSavedPack] = useState(null);
   const [saving, setSaving] = useState(false);
 
-  const [packs, setPacks] = useState([]);
-  const [loadingPacks, setLoadingPacks] = useState(true);
-  const [wrongMap, setWrongMap] = useState({});
-  const [loadingWrong, setLoadingWrong] = useState(true);
-  const [history, setHistory] = useState([]);
-  const [loadingHistory, setLoadingHistory] = useState(true);
+  const queryClient = useQueryClient();
 
-  const [quizWords, setQuizWords] = useState([]);
-  const [quizMeta, setQuizMeta] = useState(null);
-  const [result, setResult] = useState(null);
-  const [pendingQuiz, setPendingQuiz] = useState(null);
+const {
+  data: packs = [],
+  isLoading: loadingPacks,
+} = useQuery({
+  queryKey: ["packs"],
+  queryFn: async () => {
+    await seedDefaultPacks();
+    return loadAllPacks();
+  },
+});
 
-  useEffect(() => {
-    (async () => {
-      await seedDefaultPacks();
-      refreshPacks();
-      refreshWrong();
-      refreshHistory();
-    })();
-  }, []);
+const {
+  data: wrongMap = {},
+  isLoading: loadingWrong,
+} = useQuery({
+  queryKey: ["wrongMap"],
+  queryFn: loadWrongMap,
+});
 
-  async function refreshPacks() {
-    setLoadingPacks(true);
-    setPacks(await loadAllPacks());
-    setLoadingPacks(false);
-  }
-  async function refreshWrong() {
-    setLoadingWrong(true);
-    setWrongMap(await loadWrongMap());
-    setLoadingWrong(false);
-  }
-  async function refreshHistory() {
-    setLoadingHistory(true);
-    setHistory(await loadHistory());
-    setLoadingHistory(false);
-  }
+const {
+  data: history = [],
+  isLoading: loadingHistory,
+} = useQuery({
+  queryKey: ["history"],
+  queryFn: loadHistory,
+});
+
+const [quizWords, setQuizWords] = useState([]);
+const [quizMeta, setQuizMeta] = useState(null);
+const [result, setResult] = useState(null);
+const [pendingQuiz, setPendingQuiz] = useState(null);
 
   function wordMeanings(w) {
     return w.meanings && w.meanings.length ? w.meanings : splitMeanings(w.ko);
@@ -1806,7 +1804,9 @@ export default function App() {
       const merged = [...kept, ...finalWrong];
       if (merged.length > 0) await setJSON("wrongnote:" + packId, merged);
       else await deleteKey("wrongnote:" + packId);
-      await refreshWrong();
+      await queryClient.invalidateQueries({
+        queryKey: ["wrongMap"],
+      });
     } catch (e) {
       console.error(e);
     }
@@ -1823,7 +1823,9 @@ export default function App() {
         ts: Date.now(),
       };
       await setJSON("history:" + entry.id, entry);
-      await refreshHistory();
+      await queryClient.invalidateQueries({
+        queryKey: ["history"],
+      });
     } catch (e) {
       console.error(e);
     }
@@ -1833,13 +1835,17 @@ export default function App() {
 
   async function handleDeleteHistoryEntry(id) {
     await deleteKey("history:" + id);
-    refreshHistory();
+    await queryClient.invalidateQueries({
+      queryKey: ["history"],
+    });
   }
 
   async function handleClearHistory() {
     const keys = await listKeys("history:");
     for (const k of keys) await deleteKey(k);
-    refreshHistory();
+    await queryClient.invalidateQueries({
+      queryKey: ["history"],
+    });
   }
 
   async function handleRemoveWrongWord(packId, word) {
@@ -1847,7 +1853,9 @@ export default function App() {
     const filtered = existing.filter((w) => w.en !== word.en);
     if (filtered.length > 0) await setJSON("wrongnote:" + packId, filtered);
     else await deleteKey("wrongnote:" + packId);
-    refreshWrong();
+    await queryClient.invalidateQueries({
+      queryKey: ["wrongMap"],
+    });
   }
 
   function goPacksList() {
@@ -1877,14 +1885,20 @@ export default function App() {
     setSaving(false);
     setSavedPack(pack);
     setPacksStep("success");
-    await refreshPacks();
+    await queryClient.invalidateQueries({
+      queryKey: ["packs"],
+    });
   }
 
   async function handleDeletePack(id) {
     await deleteKey("pack:" + id);
     await deleteKey("wrongnote:" + id);
-    refreshPacks();
-    refreshWrong();
+    await queryClient.invalidateQueries({
+      queryKey: ["packs"],
+    });
+    await queryClient.invalidateQueries({
+      queryKey: ["wrongMap"],
+    });
   }
 
   async function handleAddDefaultPack(defaultPack) {
@@ -1894,7 +1908,9 @@ export default function App() {
     if (!seeded.includes(defaultPack.key)) {
       await setJSON(SEEDED_DEFAULTS_KEY, [...seeded, defaultPack.key]);
     }
-    await refreshPacks();
+    await queryClient.invalidateQueries({
+      queryKey: ["packs"],
+    });
   }
 
   const totalWrongCount = Object.values(wrongMap).reduce((s, a) => s + a.length, 0);
