@@ -1,3 +1,4 @@
+import { listKeys, getJSON, setJSON, deleteKey, seedPacks } from "./storage.js";
 import { useState, useEffect, useMemo, useRef } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
@@ -87,55 +88,6 @@ function formatTime(sec) {
   return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
 }
 
-async function listKeys(prefix) {
-  try {
-    const keys = [];
-
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-
-      if (key && key.startsWith(prefix)) {
-        keys.push(key);
-      }
-    }
-
-    return keys;
-  } catch (e) {
-    console.error("storage list failed:", e);
-    return [];
-  }
-}
-
-async function getJSON(key) {
-  try {
-    const value = localStorage.getItem(key);
-    return value ? JSON.parse(value) : null;
-  } catch (e) {
-    console.error("storage get failed:", e);
-    return null;
-  }
-}
-
-async function setJSON(key, value) {
-  try {
-    localStorage.setItem(key, JSON.stringify(value));
-    return true;
-  } catch (e) {
-    console.error("storage set failed:", e);
-    return false;
-  }
-}
-
-async function deleteKey(key) {
-  try {
-    localStorage.removeItem(key);
-    return true;
-  } catch (e) {
-    console.error("storage delete failed:", e);
-    return false;
-  }
-}
-
 const SEEDED_DEFAULTS_KEY = "meta:seededDefaultPacks";
 
 async function getSeededDefaultKeys() {
@@ -161,19 +113,7 @@ function buildDefaultPackObject(defaultPack) {
 // 기본 단어팩은 앱을 처음 열었을 때 자동으로 내 단어팩에 들어가도록 합니다.
 // 현재 저장된 단어팩의 sourceKey를 확인해서 없는 기본팩만 추가합니다.
 async function seedDefaultPacks() {
-  const existingPacks = await loadAllPacks();
-  const existingSourceKeys = new Set(
-    existingPacks.map((pack) => pack.sourceKey).filter(Boolean)
-  );
-
-  const missingDefaults = DEFAULT_PACKS.filter(
-    (defaultPack) => !existingSourceKeys.has(defaultPack.key)
-  );
-
-  for (const defaultPack of missingDefaults) {
-    const pack = buildDefaultPackObject(defaultPack);
-    await setJSON("pack:" + pack.id, pack);
-  }
+  await seedPacks(DEFAULT_PACKS, buildDefaultPackObject);
 }
 
 async function loadAllPacks() {
@@ -1703,6 +1643,12 @@ export default function App() {
   const [editingId, setEditingId] = useState(null);
   const [savedPack, setSavedPack] = useState(null);
   const [saving, setSaving] = useState(false);
+  const [storageError, setStorageError] = useState("");
+  async function runAction(action) {
+    setStorageError("");
+    try { await action(); }
+    catch (error) { setStorageError(error.message || "데이터를 처리하지 못했어요. 다시 시도해주세요."); }
+  }
 
   const queryClient = useQueryClient();
 
@@ -1808,7 +1754,7 @@ const [pendingQuiz, setPendingQuiz] = useState(null);
         queryKey: ["wrongMap"],
       });
     } catch (e) {
-      console.error(e);
+      setStorageError(e.message);
     }
     try {
       const entry = {
@@ -1827,7 +1773,7 @@ const [pendingQuiz, setPendingQuiz] = useState(null);
         queryKey: ["history"],
       });
     } catch (e) {
-      console.error(e);
+      setStorageError(e.message);
     }
     setResult({ score: finalScore, total: attemptedWords.length, wrong: finalWrong, packId, label, elapsed });
     setView("result");
@@ -1868,8 +1814,12 @@ const [pendingQuiz, setPendingQuiz] = useState(null);
   }
 
   async function handleSavePack(name, words) {
+    if (saving) return;
     setSaving(true);
+    try {
+    const existing = editingId ? await getJSON("pack:" + editingId) : null;
     const pack = {
+      ...(existing || {}),
       id: editingId || uid(),
       name,
       words: words.map((w) => ({
@@ -1879,7 +1829,7 @@ const [pendingQuiz, setPendingQuiz] = useState(null);
         meanings: (w.meanings && w.meanings.length ? w.meanings : splitMeanings(w.ko)),
         ...(w.related && w.related.trim() ? { related: w.related.trim() } : {}),
       })),
-      createdAt: Date.now(),
+      createdAt: existing?.createdAt || Date.now(),
     };
     await setJSON("pack:" + pack.id, pack);
     setSaving(false);
@@ -1888,6 +1838,7 @@ const [pendingQuiz, setPendingQuiz] = useState(null);
     await queryClient.invalidateQueries({
       queryKey: ["packs"],
     });
+    } finally { setSaving(false); }
   }
 
   async function handleDeletePack(id) {
@@ -1941,8 +1892,8 @@ const [pendingQuiz, setPendingQuiz] = useState(null);
             setDraftWords(p.words.map((w) => ({ ...w })));
             setPacksStep("preview");
           }}
-          onDelete={handleDeletePack}
-          onAddDefault={handleAddDefaultPack}
+          onDelete={(id) => runAction(() => handleDeletePack(id))}
+          onAddDefault={(pack) => runAction(() => handleAddDefaultPack(pack))}
         />
       );
     } else if (packsStep === "manual") {
@@ -1963,7 +1914,7 @@ const [pendingQuiz, setPendingQuiz] = useState(null);
           initialWords={draftWords}
           saving={saving}
           onBack={() => setPacksStep(editingId ? "list" : "manual")}
-          onSave={handleSavePack}
+          onSave={(name, words) => runAction(() => handleSavePack(name, words))}
         />
       );
     } else if (packsStep === "success") {
@@ -2023,7 +1974,7 @@ const [pendingQuiz, setPendingQuiz] = useState(null);
         wrongMap={wrongMap}
         loading={loadingWrong}
         onRetest={handleRetest}
-        onRemoveWord={handleRemoveWrongWord}
+        onRemoveWord={(packId, word) => runAction(() => handleRemoveWrongWord(packId, word))}
       />
     );
   } else if (view === "stats") {
@@ -2032,8 +1983,8 @@ const [pendingQuiz, setPendingQuiz] = useState(null);
         packs={packs}
         history={history}
         loading={loadingHistory}
-        onDeleteEntry={handleDeleteHistoryEntry}
-        onClearAll={handleClearHistory}
+        onDeleteEntry={(id) => runAction(() => handleDeleteHistoryEntry(id))}
+        onClearAll={() => runAction(() => handleClearHistory())}
         onGoPacks={goPacksList}
       />
     );
@@ -2070,6 +2021,12 @@ const [pendingQuiz, setPendingQuiz] = useState(null);
       <main className="flex-1 min-w-0 min-h-screen overflow-y-auto">
 
         <div className="w-full max-w-7xl mx-auto px-6 md:px-10 py-6">
+          {(storageError || queryClient.getQueryState(["packs"])?.error || queryClient.getQueryState(["wrongMap"])?.error || queryClient.getQueryState(["history"])?.error) && (
+            <div role="alert" className="mb-4 rounded-xl bg-red-50 p-4 text-sm text-red-800">
+              {storageError || "학습 데이터를 불러오지 못했어요. 브라우저의 저장 공간과 사이트 데이터 권한을 확인해주세요."}
+              <button className="ml-3 underline" onClick={() => runAction(() => queryClient.refetchQueries())}>다시 시도</button>
+            </div>
+          )}
           {body}
         </div>
       </main>
