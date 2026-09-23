@@ -1,3 +1,4 @@
+import { parseBulkInput, validateWords } from "./words.js";
 import { listKeys, getJSON, setJSON, deleteKey, seedPacks } from "./storage.js";
 import { useState, useEffect, useMemo, useRef } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -152,32 +153,6 @@ function splitMeanings(ko) {
     .split(",")
     .map((s) => s.trim())
     .filter(Boolean);
-}
-
-function parseBulkLines(text) {
-  const lines = text.split("\n").map((l) => l.trim()).filter(Boolean);
-  const parsed = [];
-  for (const line of lines) {
-    if (parsed.length >= 60) break;
-    let en = "";
-    let ko = "";
-    let related = "";
-    if (line.includes("|")) {
-      const parts = line.split("|").map((p) => p.trim());
-      en = parts[0] || "";
-      ko = parts[1] || "";
-      related = parts[2] || "";
-    } else {
-      const idx = line.indexOf(",");
-      if (idx === -1) continue;
-      en = line.slice(0, idx).trim();
-      ko = line.slice(idx + 1).trim();
-    }
-    if (en && ko) {
-      parsed.push({ id: uid(), en, ko, related, meanings: splitMeanings(ko) });
-    }
-  }
-  return parsed;
 }
 
 const DEFAULT_PACKS = [
@@ -828,16 +803,17 @@ const BULK_EXAMPLE =
 function ManualInputScreen({ onBack, onParsed }) {
   const [text, setText] = useState("");
   const [error, setError] = useState("");
-  const count = useMemo(() => parseBulkLines(text).length, [text]);
+  const parsedInput = useMemo(() => parseBulkInput(text), [text]);
+  const count = parsedInput.words.length;
 
   function handlePreview() {
-    const parsed = parseBulkLines(text);
-    if (parsed.length === 0) {
-      setError('형식을 확인해주세요. 예: apple,사과');
-      return;
-    }
+    const { words, invalidLines } = parsedInput;
+    const problem = invalidLines.length
+      ? "입력 형식을 확인해주세요: " + invalidLines.join(", ") + "번째 줄 (예: apple,사과)"
+      : validateWords(words);
+    if (problem) { setError(problem); return; }
     setError("");
-    onParsed(parsed);
+    onParsed(words.map((word) => ({ ...word, id: uid(), meanings: splitMeanings(word.ko) })));
   }
 
   return (
@@ -904,15 +880,11 @@ function PreviewScreen({ initialName, initialWords, onBack, onSave, saving }) {
       setError("팩 이름을 입력해주세요.");
       return;
     }
-    const clean = words
-      .filter((w) => w.en.trim() && w.ko.trim())
-      .map((w) => ({ ...w, meanings: splitMeanings(w.ko) }));
-    if (clean.length === 0) {
-      setError("단어를 1개 이상 입력해주세요.");
-      return;
-    }
+    const problem = validateWords(words);
+    if (problem) { setError(problem); return; }
+    const clean = words.map((w) => ({ ...w, meanings: splitMeanings(w.ko) }));
     setError("");
-    onSave(name.trim(), clean.slice(0, 60));
+    onSave(name.trim(), clean);
   }
 
   return (
