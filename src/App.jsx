@@ -1,3 +1,4 @@
+import { buildQuiz } from "./quiz.js";
 import { parseBulkInput, validateWords } from "./words.js";
 import { listKeys, getJSON, setJSON, deleteKey, seedPacks } from "./storage.js";
 import { useState, useEffect, useMemo, useRef } from "react";
@@ -61,14 +62,6 @@ function answerLangOf(mode) {
   return mode === "en-choice" || mode === "en-input" ? "en" : "ko";
 }
 
-function shuffle(arr) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
 function uid() {
   return crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2);
 }
@@ -1041,28 +1034,12 @@ function QuizScreen({ words, label, mode, onFinish, onExit }) {
   const meaningsList = current
     ? (current.meanings && current.meanings.length ? current.meanings : splitMeanings(current.ko))
     : [];
-  const koChoiceAnswer = useMemo(() => {
-    if (!meaningsList.length) return current ? current.ko : "";
-    return meaningsList[Math.floor(Math.random() * meaningsList.length)];
-  }, [idx]);
   const correctAnswer = current
-    ? answerLang === "en"
-      ? current.en
-      : choice
-      ? koChoiceAnswer
-      : current.ko
+    ? answerLang === "en" ? current.en : choice ? current.questionAnswer : current.ko
     : "";
   const promptText = current ? (answerLang === "en" ? current.ko : current.en) : "";
   const promptIsEnglish = answerLang === "ko";
-
-  const options = useMemo(() => {
-    if (!current || !choice) return [];
-    const pool =
-      answerLang === "en"
-        ? (current.distractorsEn || [])
-        : (current.distractors || current.distractorsKo || []);
-    return shuffle([correctAnswer, ...pool.slice(0, 3)]);
-  }, [idx, koChoiceAnswer]);
+  const options = current?.questionOptions || [];
 
   useEffect(() => {
     if (current && promptIsEnglish) speak(current.en);
@@ -1656,32 +1633,6 @@ const [quizMeta, setQuizMeta] = useState(null);
 const [result, setResult] = useState(null);
 const [pendingQuiz, setPendingQuiz] = useState(null);
 
-  function wordMeanings(w) {
-    return w.meanings && w.meanings.length ? w.meanings : splitMeanings(w.ko);
-  }
-
-  function fillDistractors(words) {
-    return words.map((w) => {
-      const myMeanings = wordMeanings(w);
-      const koPool = shuffle(
-        words
-          .filter((x) => x.id !== w.id)
-          .map((x) => {
-            const ms = wordMeanings(x);
-            return ms[Math.floor(Math.random() * ms.length)];
-          })
-          .filter((k) => k && !myMeanings.includes(k))
-      );
-      const enPool = shuffle(words.map((x) => x.en).filter((e) => e !== w.en));
-      return {
-        ...w,
-        meanings: myMeanings,
-        distractors: koPool.slice(0, 3),
-        distractorsEn: enPool.slice(0, 3),
-      };
-    });
-  }
-
   function handleStartPack(pack) {
     setPendingQuiz({ type: "pack", pack });
     setView("modeSelect");
@@ -1695,12 +1646,10 @@ const [pendingQuiz, setPendingQuiz] = useState(null);
   function beginQuizWithMode(mode) {
     if (!pendingQuiz) return;
     if (pendingQuiz.type === "pack") {
-      const filled = fillDistractors(pendingQuiz.pack.words);
-      setQuizWords(shuffle(filled));
+      setQuizWords(buildQuiz(pendingQuiz.pack.words, mode, DEFAULT_PACKS.flatMap((pack) => pack.words)));
       setQuizMeta({ packId: pendingQuiz.pack.id, label: pendingQuiz.pack.name, mode });
     } else {
-      const filled = fillDistractors(pendingQuiz.words);
-      setQuizWords(shuffle(filled));
+      setQuizWords(buildQuiz(pendingQuiz.words, mode, DEFAULT_PACKS.flatMap((pack) => pack.words)));
       setQuizMeta({ packId: pendingQuiz.packId, label: `오답노트 · ${pendingQuiz.label}`, mode });
     }
     setPendingQuiz(null);
@@ -1933,7 +1882,7 @@ const [pendingQuiz, setPendingQuiz] = useState(null);
         result={result}
         onGoWrongnote={() => setView("wrongnote")}
         onRetry={() => {
-          setQuizWords(shuffle(quizWords));
+          setQuizWords(buildQuiz(quizWords, quizMeta.mode, DEFAULT_PACKS.flatMap((pack) => pack.words)));
           setView("quiz");
         }}
         onHome={() => setView("home")}
