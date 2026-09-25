@@ -1025,7 +1025,9 @@ function QuizScreen({ words, label, mode, onFinish, onExit }) {
   const [locked, setLocked] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [wasCorrect, setWasCorrect] = useState(false);
-  const startRef = useRef(Date.now());
+  const startRef = useRef(0);
+  const timerRef = useRef(null);
+  const submittedRef = useRef(false);
   const inputRef = useRef(null);
 
   const choice = isChoiceMode(mode);
@@ -1042,27 +1044,36 @@ function QuizScreen({ words, label, mode, onFinish, onExit }) {
   const options = current?.questionOptions || [];
 
   useEffect(() => {
-    if (current && promptIsEnglish) speak(current.en);
-  }, [idx]);
+    startRef.current = Date.now();
+    return () => {
+      clearTimeout(timerRef.current);
+      window.speechSynthesis?.cancel();
+    };
+  }, []);
 
   useEffect(() => {
-    setInputValue("");
+    if (current && promptIsEnglish) speak(current.en);
+  }, [current, promptIsEnglish]);
+
+  useEffect(() => {
     if (!choice && inputRef.current) {
       inputRef.current.focus();
     }
-  }, [idx]);
+  }, [idx, choice]);
 
   if (!current) return null;
 
   function advance(correct, wrongEntry) {
     const finalScore = correct ? score + 1 : score;
     const finalWrong = correct ? wrong : [...wrong, wrongEntry];
-    setTimeout(() => {
+    timerRef.current = setTimeout(() => {
       if (idx + 1 < words.length) {
         setScore(finalScore);
         setWrong(finalWrong);
         setIdx((i) => i + 1);
         setSelected(null);
+        setInputValue("");
+        submittedRef.current = false;
         setLocked(false);
         setWasCorrect(false);
       } else {
