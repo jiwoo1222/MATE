@@ -1084,7 +1084,8 @@ function QuizScreen({ words, label, mode, onFinish, onExit }) {
   }
 
   function handleSelect(opt) {
-    if (locked) return;
+    if (submittedRef.current) return;
+    submittedRef.current = true;
     setSelected(opt);
     setLocked(true);
     const correct = opt === correctAnswer;
@@ -1098,9 +1099,10 @@ function QuizScreen({ words, label, mode, onFinish, onExit }) {
 
   function handleSubmitInput(e) {
     e.preventDefault();
-    if (locked) return;
+    if (submittedRef.current) return;
     const cleanInput = normalize(inputValue);
     if (!cleanInput) return;
+    submittedRef.current = true;
     const correct =
       answerLang === "en"
         ? cleanInput.toLowerCase() === normalize(correctAnswer).toLowerCase()
@@ -1218,7 +1220,7 @@ function QuizScreen({ words, label, mode, onFinish, onExit }) {
               </div>
             )}
             {!locked && (
-              <PillButton onClick={handleSubmitInput} disabled={!normalize(inputValue)}>
+              <PillButton type="submit" disabled={!normalize(inputValue)}>
                 확인
               </PillButton>
             )}
