@@ -595,17 +595,17 @@ function NavBar({ view, setView, wrongCount }) {
   ];
 
   return (
-    <aside className="w-64 shrink-0 bg-white border-r border-[#E3EDF7] min-h-screen flex flex-col">
+    <aside className="sticky top-0 z-20 w-full md:w-64 md:h-screen shrink-0 bg-white border-b md:border-r border-[#E3EDF7] flex flex-col md:self-start">
       
-      <div className="px-8 py-8">
+      <div className="px-4 py-2 md:px-8 md:py-8">
         <img
           src="/textlogo.png"
           alt="단어 학습"
-          className="w-auto h-14 object-contain"
+          className="w-auto h-8 md:h-14 object-contain"
         />
       </div>
       
-      <nav className="px-4 flex flex-col gap-2">
+      <nav className="px-2 pb-2 md:px-4 grid grid-cols-4 md:grid-cols-1 gap-1 md:gap-2">
         {items.map((it) => {
           const active = view === it.key;
           const Icon = it.icon;
@@ -615,7 +615,7 @@ function NavBar({ view, setView, wrongCount }) {
               key={it.key}
               onClick={() => setView(it.key)}
               className={`
-                w-full flex items-center gap-3 px-4 py-3.5 rounded-xl
+                w-full flex flex-col md:flex-row items-center gap-1 md:gap-3 px-2 md:px-4 py-2 md:py-3.5 rounded-xl
                 transition-colors text-left
                 ${
                   active
@@ -776,10 +776,10 @@ function PacksListScreen({ packs, loading, onStart, onGoManual, onEdit, onDelete
               <button onClick={() => onStart(p)} className="w-8 h-8 rounded-full bg-[#2E6FBE] flex items-center justify-center text-white shrink-0">
                 <Play size={12} fill="currentColor" />
               </button>
-              <button onClick={() => onEdit(p)} className="text-[#B7C4D6] hover:text-[#2E6FBE] shrink-0">
+              <button onClick={() => onEdit(p)} className="text-[#64748B] hover:text-[#2E6FBE] shrink-0">
                 <PenLine size={16} />
               </button>
-              <button onClick={() => onDelete(p.id)} className="text-[#B7C4D6] hover:text-[#E2574A] shrink-0">
+              <button onClick={() => onDelete(p.id)} className="text-[#64748B] hover:text-[#E2574A] shrink-0">
                 <Trash2 size={16} />
               </button>
             </div>
@@ -838,7 +838,7 @@ function ManualInputScreen({ onBack, onParsed }) {
           rows={10}
           className="w-full bg-white rounded-2xl px-4 py-3.5 text-[#1E2A3A] placeholder-[#B7C4D6] outline-none shadow-sm mb-1.5 font-mono text-[14px] leading-relaxed"
         />
-        <p className="text-right text-[12px] text-[#B7C4D6] mb-5">{count}/60</p>
+        <p className="text-right text-[12px] text-[#64748B] mb-5">{count}/60</p>
 
         {error && <p className="text-[13px] text-[#E2574A] mb-3">{error}</p>}
 
@@ -914,8 +914,8 @@ function PreviewScreen({ initialName, initialWords, onBack, onSave, saving }) {
         <div className="bg-white rounded-2xl shadow-sm overflow-hidden mb-4">
           <div className="flex flex-col divide-y divide-[#EEF3FA] max-h-[380px] overflow-y-auto">
             {words.map((w, i) => (
-              <div key={w.id} className="flex items-center gap-2 px-4 py-2.5">
-                <span className="text-[12px] text-[#B7C4D6] w-5 shrink-0 text-right">{i + 1}</span>
+              <div key={w.id} className="grid grid-cols-[20px_minmax(0,1fr)_minmax(0,1fr)_24px] md:flex items-center gap-2 px-3 md:px-4 py-2.5">
+                <span className="text-[12px] text-[#64748B] w-5 shrink-0 text-right">{i + 1}</span>
                 <input
                   value={w.en}
                   onChange={(e) => update(w.id, "en", e.target.value)}
@@ -932,14 +932,14 @@ function PreviewScreen({ initialName, initialWords, onBack, onSave, saving }) {
                   value={w.related || ""}
                   onChange={(e) => update(w.id, "related", e.target.value)}
                   placeholder="유의어/반의어(선택)"
-                  className="flex-1 min-w-0 bg-transparent outline-none text-[#B7C4D6] text-xs"
+                  className="col-start-2 col-span-2 row-start-2 md:flex-1 min-w-0 bg-transparent outline-none text-[#64748B] text-xs"
                 />
-                <button onClick={() => remove(w.id)} className="text-[#B7C4D6] hover:text-[#E2574A] shrink-0">
+                <button onClick={() => remove(w.id)} className="col-start-4 row-start-1 text-[#64748B] hover:text-[#E2574A] shrink-0">
                   <CloseIcon size={15} />
                 </button>
               </div>
             ))}
-            {words.length === 0 && <p className="text-center text-[#B7C4D6] text-sm py-8">단어가 없어요.</p>}
+            {words.length === 0 && <p className="text-center text-[#64748B] text-sm py-8">단어가 없어요.</p>}
           </div>
         </div>
 
@@ -1008,7 +1008,7 @@ function ModeSelectScreen({ title, count, onBack, onSelect }) {
                 <p className="text-[#1E2A3A] font-semibold">{m.title}</p>
                 <p className="text-[12px] text-[#7A879C]">{m.desc}</p>
               </div>
-              <ChevronRight size={18} className="text-[#B7C4D6] shrink-0" />
+              <ChevronRight size={18} className="text-[#64748B] shrink-0" />
             </button>
           );
         })}
@@ -1116,14 +1116,14 @@ function QuizScreen({ words, label, mode, onFinish, onExit }) {
     if (!locked) return "bg-white text-[#1E2A3A] active:scale-[0.98]";
     if (opt === correctAnswer) return "bg-[#E1F5EA] text-[#1E8A56] ring-2 ring-[#3FA66B]";
     if (opt === selected) return "bg-[#FBE4E1] text-[#C13E32] ring-2 ring-[#E2574A]";
-    return "bg-white text-[#B7C4D6] opacity-60";
+    return "bg-white text-[#64748B] opacity-60";
   }
 
   function badgeClass(opt) {
     if (!locked) return "bg-[#EAF3FB] text-[#7A879C]";
     if (opt === correctAnswer) return "bg-[#3FA66B] text-white";
     if (opt === selected) return "bg-[#E2574A] text-white";
-    return "bg-[#EAF3FB] text-[#B7C4D6]";
+    return "bg-[#EAF3FB] text-[#64748B]";
   }
 
   const progressPct = Math.round(((idx + (locked ? 1 : 0)) / words.length) * 100);
@@ -1154,7 +1154,7 @@ function QuizScreen({ words, label, mode, onFinish, onExit }) {
       <div className="px-5">
         <div className="bg-white rounded-2xl px-6 py-8 flex flex-col items-center gap-2 shadow-sm mb-6">
           <div className="flex items-center gap-2">
-            <p className="text-[30px] font-bold text-[#1E2A3A]">{promptText}</p>
+            <p className="text-[26px] sm:text-[30px] font-bold text-[#1E2A3A] break-words min-w-0">{promptText}</p>
             {promptIsEnglish && (
               <button onClick={() => speak(current.en)} className="text-[#2E6FBE] shrink-0">
                 <Volume2 size={20} />
@@ -1398,7 +1398,7 @@ function WrongNoteScreen({ packs, wrongMap, loading, onRetest, onRemoveWord }) {
                       <span className="text-[#1E2A3A] font-medium text-sm">{w.en}</span>
                       <span className="text-[#7A879C] text-sm ml-2">{w.ko}</span>
                     </div>
-                    <button onClick={() => onRemoveWord(packId, w)} className="text-[#B7C4D6] hover:text-[#E2574A]">
+                    <button onClick={() => onRemoveWord(packId, w)} className="text-[#64748B] hover:text-[#E2574A]">
                       <Trash2 size={14} />
                     </button>
                   </div>
@@ -1530,7 +1530,7 @@ function StatsScreen({ packs, history, loading, onDeleteEntry, onClearAll, onGoP
                     <span className="text-[13px] font-bold text-[#2E6FBE] shrink-0">{pct}%</span>
                   </div>
                   <StatBar pct={pct} tone={pct >= 80 ? "green" : pct >= 50 ? "blue" : "orange"} />
-                  <p className="text-[11px] text-[#B7C4D6] mt-1.5">
+                  <p className="text-[11px] text-[#64748B] mt-1.5">
                     {p.attempts}회 학습 · {p.correct}/{p.total}개 정답
                   </p>
                 </div>
@@ -1540,7 +1540,7 @@ function StatsScreen({ packs, history, loading, onDeleteEntry, onClearAll, onGoP
 
           <div className="px-5 flex items-center justify-between mb-3">
             <p className="text-[15px] font-bold text-[#1E2A3A]">최근 풀이 기록</p>
-            <button onClick={onClearAll} className="text-[12px] text-[#B7C4D6] hover:text-[#E2574A] font-medium">
+            <button onClick={onClearAll} className="text-[12px] text-[#64748B] hover:text-[#E2574A] font-medium">
               전체 삭제
             </button>
           </div>
@@ -1569,7 +1569,7 @@ function StatsScreen({ packs, history, loading, onDeleteEntry, onClearAll, onGoP
                     <p className="text-[#1E2A3A] font-semibold text-[13px] truncate">
                       {packNames[h.packId] || h.label || "삭제된 팩"}
                     </p>
-                    <p className="text-[11px] text-[#B7C4D6] flex items-center gap-1.5 mt-0.5">
+                    <p className="text-[11px] text-[#64748B] flex items-center gap-1.5 mt-0.5">
                       {formatDate(h.ts)} · {modeInfo?.title || h.mode}
                       <span className="inline-flex items-center gap-0.5">
                         <Clock size={10} /> {formatTime(h.elapsed || 0)}
@@ -1584,7 +1584,7 @@ function StatsScreen({ packs, history, loading, onDeleteEntry, onClearAll, onGoP
                       {pct}%
                     </p>
                   </div>
-                  <button onClick={() => onDeleteEntry(h.id)} className="text-[#B7C4D6] hover:text-[#E2574A] shrink-0">
+                  <button onClick={() => onDeleteEntry(h.id)} className="text-[#64748B] hover:text-[#E2574A] shrink-0">
                     <Trash2 size={14} />
                   </button>
                 </div>
@@ -1925,7 +1925,7 @@ const [pendingQuiz, setPendingQuiz] = useState(null);
   }
 
   return (
-    <div className="min-h-screen bg-[#EAF3FB] flex">
+    <div className="min-h-screen bg-[#EAF3FB] flex flex-col md:flex-row">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap');
 
@@ -1954,7 +1954,7 @@ const [pendingQuiz, setPendingQuiz] = useState(null);
 
       <main className="flex-1 min-w-0 min-h-screen overflow-y-auto">
 
-        <div className="w-full max-w-7xl mx-auto px-6 md:px-10 py-6">
+        <div className="w-full max-w-7xl mx-auto px-0 sm:px-6 md:px-10 py-4 md:py-6">
           {(storageError || queryClient.getQueryState(["packs"])?.error || queryClient.getQueryState(["wrongMap"])?.error || queryClient.getQueryState(["history"])?.error) && (
             <div role="alert" className="mb-4 rounded-xl bg-red-50 p-4 text-sm text-red-800">
               {storageError || "학습 데이터를 불러오지 못했어요. 브라우저의 저장 공간과 사이트 데이터 권한을 확인해주세요."}
