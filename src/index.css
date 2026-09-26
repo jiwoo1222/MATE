@@ -10,3 +10,19 @@ body,
 body {
   background: #EAF3FB;
 }
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+:is(button, input, textarea):focus-visible {
+  outline: 3px solid #2E6FBE;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
