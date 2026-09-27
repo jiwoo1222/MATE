@@ -546,7 +546,7 @@ function TopBar({ title, onBack, right }) {
   return (
     <div className="flex items-center gap-2 px-5 pt-6 pb-3">
       {onBack && (
-        <button onClick={onBack} className="p-1.5 -ml-1.5 rounded-full hover:bg-[#DDEBFA] text-[#1E2A3A] transition-colors">
+        <button aria-label="뒤로 가기" onClick={onBack} className="p-1.5 -ml-1.5 rounded-full hover:bg-[#DDEBFA] text-[#1E2A3A] transition-colors">
           <ArrowLeft size={20} />
         </button>
       )}
@@ -614,6 +614,7 @@ function NavBar({ view, setView, wrongCount }) {
             <button
               key={it.key}
               onClick={() => setView(it.key)}
+              aria-current={active ? "page" : undefined}
               className={`
                 w-full flex flex-col md:flex-row items-center gap-1 md:gap-3 px-2 md:px-4 py-2 md:py-3.5 rounded-xl
                 transition-colors text-left
@@ -700,7 +701,7 @@ function HomeScreen({ packs, loading, wrongMap, onStart, onGoPacks, onGoWrongnot
                 <p className="text-[#1E2A3A] font-semibold truncate">{p.name}</p>
                 <p className="text-[12px] text-[#7A879C]">{p.words.length}개 단어</p>
               </div>
-              <button onClick={() => onStart(p)} className="shrink-0 bg-[#2E6FBE] text-white text-[13px] font-semibold px-4 py-2 rounded-full active:scale-[0.96] transition-transform">
+              <button aria-label={p.name + " 학습 시작"} onClick={() => onStart(p)} className="shrink-0 bg-[#2E6FBE] text-white text-[13px] font-semibold px-4 py-2 rounded-full active:scale-[0.96] transition-transform">
                 학습하기
               </button>
             </div>
@@ -773,13 +774,13 @@ function PacksListScreen({ packs, loading, onStart, onGoManual, onEdit, onDelete
                 <p className="text-[#1E2A3A] font-semibold truncate">{p.name}</p>
                 <p className="text-[12px] text-[#7A879C]">{p.words.length}개 단어</p>
               </div>
-              <button onClick={() => onStart(p)} className="w-8 h-8 rounded-full bg-[#2E6FBE] flex items-center justify-center text-white shrink-0">
+              <button aria-label={p.name + " 학습 시작"} onClick={() => onStart(p)} className="w-8 h-8 rounded-full bg-[#2E6FBE] flex items-center justify-center text-white shrink-0">
                 <Play size={12} fill="currentColor" />
               </button>
-              <button onClick={() => onEdit(p)} className="text-[#64748B] hover:text-[#2E6FBE] shrink-0">
+              <button aria-label={p.name + " 수정"} onClick={() => onEdit(p)} className="text-[#64748B] hover:text-[#2E6FBE] shrink-0">
                 <PenLine size={16} />
               </button>
-              <button onClick={() => onDelete(p.id)} className="text-[#64748B] hover:text-[#E2574A] shrink-0">
+              <button aria-label={p.name + " 삭제"} onClick={() => onDelete(p.id)} className="text-[#64748B] hover:text-[#E2574A] shrink-0">
                 <Trash2 size={16} />
               </button>
             </div>
@@ -812,7 +813,7 @@ function ManualInputScreen({ onBack, onParsed }) {
   return (
     <div>
       <div className="flex items-center px-5 pt-6">
-        <button onClick={onBack} className="p-1.5 -ml-1.5 rounded-full hover:bg-[#DDEBFA] text-[#1E2A3A]">
+        <button aria-label="뒤로 가기" onClick={onBack} className="p-1.5 -ml-1.5 rounded-full hover:bg-[#DDEBFA] text-[#1E2A3A]">
           <ArrowLeft size={20} />
         </button>
       </div>
@@ -834,13 +835,14 @@ function ManualInputScreen({ onBack, onParsed }) {
         <textarea
           value={text}
           onChange={(e) => setText(e.target.value)}
+          aria-label="단어 일괄 입력"
           placeholder={BULK_EXAMPLE}
           rows={10}
           className="w-full bg-white rounded-2xl px-4 py-3.5 text-[#1E2A3A] placeholder-[#B7C4D6] outline-none shadow-sm mb-1.5 font-mono text-[14px] leading-relaxed"
         />
         <p className="text-right text-[12px] text-[#64748B] mb-5">{count}/60</p>
 
-        {error && <p className="text-[13px] text-[#E2574A] mb-3">{error}</p>}
+        {error && <p role="alert" className="text-[13px] text-[#E2574A] mb-3">{error}</p>}
 
         <PillButton onClick={handlePreview} className="w-full py-3.5">
           <Eye size={17} /> 미리보기
@@ -884,7 +886,7 @@ function PreviewScreen({ initialName, initialWords, onBack, onSave, saving }) {
     <div>
       <div className="flex items-center justify-between px-5 pt-6">
         <div className="flex items-center gap-2">
-          <button onClick={onBack} className="p-1.5 -ml-1.5 rounded-full hover:bg-[#DDEBFA] text-[#1E2A3A]">
+          <button aria-label="뒤로 가기" onClick={onBack} className="p-1.5 -ml-1.5 rounded-full hover:bg-[#DDEBFA] text-[#1E2A3A]">
             <ArrowLeft size={20} />
           </button>
           <h1 className="text-[19px] font-bold text-[#1E2A3A]">미리보기 ({words.length}/60)</h1>
@@ -905,11 +907,12 @@ function PreviewScreen({ initialName, initialWords, onBack, onSave, saving }) {
         <input
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="팩 이름을 입력하세요"
+          aria-label="단어팩 이름"
+                  placeholder="팩 이름을 입력하세요"
           className="w-full bg-white rounded-xl px-4 py-2.5 text-[#1E2A3A] placeholder-[#B7C4D6] outline-none shadow-sm mb-4 font-semibold"
         />
 
-        {error && <p className="text-[13px] text-[#E2574A] mb-3">{error}</p>}
+        {error && <p role="alert" className="text-[13px] text-[#E2574A] mb-3">{error}</p>}
 
         <div className="bg-white rounded-2xl shadow-sm overflow-hidden mb-4">
           <div className="flex flex-col divide-y divide-[#EEF3FA] max-h-[380px] overflow-y-auto">
@@ -919,22 +922,25 @@ function PreviewScreen({ initialName, initialWords, onBack, onSave, saving }) {
                 <input
                   value={w.en}
                   onChange={(e) => update(w.id, "en", e.target.value)}
+                  aria-label="영어 단어"
                   placeholder="영어"
                   className="flex-1 min-w-0 bg-transparent outline-none text-[#1E2A3A] text-sm font-medium"
                 />
                 <input
                   value={w.ko}
                   onChange={(e) => update(w.id, "ko", e.target.value)}
+                  aria-label="한국어 뜻"
                   placeholder="뜻 (콤마로 여러개)"
                   className="flex-[1.4] min-w-0 bg-transparent outline-none text-[#7A879C] text-sm"
                 />
                 <input
                   value={w.related || ""}
                   onChange={(e) => update(w.id, "related", e.target.value)}
+                  aria-label="관련어 (선택)"
                   placeholder="유의어/반의어(선택)"
                   className="col-start-2 col-span-2 row-start-2 md:flex-1 min-w-0 bg-transparent outline-none text-[#64748B] text-xs"
                 />
-                <button onClick={() => remove(w.id)} className="col-start-4 row-start-1 text-[#64748B] hover:text-[#E2574A] shrink-0">
+                <button aria-label={"단어 " + (i + 1) + " 삭제"} onClick={() => remove(w.id)} className="col-start-4 row-start-1 text-[#64748B] hover:text-[#E2574A] shrink-0">
                   <CloseIcon size={15} />
                 </button>
               </div>
@@ -1132,7 +1138,7 @@ function QuizScreen({ words, label, mode, onFinish, onExit }) {
   return (
     <div>
       <div className="flex items-center gap-3 px-5 pt-6 pb-1">
-        <button onClick={onExit} className="p-1.5 -ml-1.5 rounded-full hover:bg-[#DDEBFA] text-[#1E2A3A]">
+        <button aria-label="학습 종료" onClick={onExit} className="p-1.5 -ml-1.5 rounded-full hover:bg-[#DDEBFA] text-[#1E2A3A]">
           <ArrowLeft size={20} />
         </button>
         <p className="text-[15px] font-bold text-[#1E2A3A]">학습 중</p>
@@ -1156,7 +1162,7 @@ function QuizScreen({ words, label, mode, onFinish, onExit }) {
           <div className="flex items-center gap-2">
             <p className="text-[26px] sm:text-[30px] font-bold text-[#1E2A3A] break-words min-w-0">{promptText}</p>
             {promptIsEnglish && (
-              <button onClick={() => speak(current.en)} className="text-[#2E6FBE] shrink-0">
+              <button aria-label="영어 발음 듣기" onClick={() => speak(current.en)} className="text-[#2E6FBE] shrink-0">
                 <Volume2 size={20} />
               </button>
             )}
@@ -1195,6 +1201,7 @@ function QuizScreen({ words, label, mode, onFinish, onExit }) {
         ) : (
           <form onSubmit={handleSubmitInput} className="flex flex-col gap-3">
             <input
+              aria-label={answerLang === "en" ? "영어 정답" : "한국어 정답"}
               ref={inputRef}
               type="text"
               value={inputValue}
@@ -1372,14 +1379,15 @@ function WrongNoteScreen({ packs, wrongMap, loading, onRetest, onRemoveWord }) {
         )}
         {visible.map(([packId, words]) => (
           <div key={packId} className="bg-white rounded-2xl overflow-hidden shadow-sm">
-            <button
-              onClick={() => setExpanded(expanded === packId ? null : packId)}
-              className="w-full flex items-center justify-between px-4 py-3.5"
-            >
-              <div className="text-left">
+            <div className="flex items-center gap-3 px-4 py-3.5">
+              <button
+                onClick={() => setExpanded(expanded === packId ? null : packId)}
+                aria-expanded={expanded === packId}
+                className="flex-1 min-w-0 text-left"
+              >
                 <p className="text-[#1E2A3A] font-semibold">{packNames[packId] || "삭제된 팩"}</p>
                 <p className="text-[12px] text-[#7A879C]">{words.length}개</p>
-              </div>
+              </button>
               <button
                 onClick={(e) => {
                   e.stopPropagation();
@@ -1389,7 +1397,7 @@ function WrongNoteScreen({ packs, wrongMap, loading, onRetest, onRemoveWord }) {
               >
                 <Play size={11} fill="currentColor" /> 다시 테스트
               </button>
-            </button>
+            </div>
             {expanded === packId && (
               <div className="flex flex-col divide-y divide-[#EEF3FA] border-t border-[#EEF3FA]">
                 {words.map((w) => (
@@ -1398,7 +1406,7 @@ function WrongNoteScreen({ packs, wrongMap, loading, onRetest, onRemoveWord }) {
                       <span className="text-[#1E2A3A] font-medium text-sm">{w.en}</span>
                       <span className="text-[#7A879C] text-sm ml-2">{w.ko}</span>
                     </div>
-                    <button onClick={() => onRemoveWord(packId, w)} className="text-[#64748B] hover:text-[#E2574A]">
+                    <button aria-label={w.en + " 오답 삭제"} onClick={() => onRemoveWord(packId, w)} className="text-[#64748B] hover:text-[#E2574A]">
                       <Trash2 size={14} />
                     </button>
                   </div>
@@ -1584,7 +1592,7 @@ function StatsScreen({ packs, history, loading, onDeleteEntry, onClearAll, onGoP
                       {pct}%
                     </p>
                   </div>
-                  <button onClick={() => onDeleteEntry(h.id)} className="text-[#64748B] hover:text-[#E2574A] shrink-0">
+                  <button aria-label="풀이 기록 삭제" onClick={() => onDeleteEntry(h.id)} className="text-[#64748B] hover:text-[#E2574A] shrink-0">
                     <Trash2 size={14} />
                   </button>
                 </div>
