@@ -1437,8 +1437,9 @@ function StatBar({ pct, tone = "blue" }) {
   );
 }
 
-function StatsScreen({ packs, history, loading, onDeleteEntry, onClearAll, onGoPacks }) {
+function StatsScreen({ packs, history, loading, onDeleteEntry, onClearAll }) {
   const [filter, setFilter] = useState("all");
+  const [visibleCount, setVisibleCount] = useState(30);
 
   const packNames = useMemo(() => {
     const m = {};
@@ -1475,7 +1476,9 @@ function StatsScreen({ packs, history, loading, onDeleteEntry, onClearAll, onGoP
   }, [history, packNames]);
 
   const filterOptions = [{ key: "all", label: "전체" }, ...perPack.map((p) => ({ key: p.packId, label: p.label }))];
-  const visibleHistory = (filter === "all" ? history : history.filter((h) => (h.packId || "unknown") === filter)).slice(0, 30);
+  const activeFilter = perPack.some((pack) => pack.packId === filter) ? filter : "all";
+  const filteredHistory = activeFilter === "all" ? history : history.filter((h) => (h.packId || "unknown") === activeFilter);
+  const visibleHistory = filteredHistory.slice(0, visibleCount);
 
   function formatDate(ts) {
     if (!ts) return "";
@@ -1559,8 +1562,8 @@ function StatsScreen({ packs, history, loading, onDeleteEntry, onClearAll, onGoP
               {filterOptions.map((f) => (
                 <button
                   key={f.key}
-                  onClick={() => setFilter(f.key)}
-                  className={`px-3.5 py-2 rounded-full text-[13px] font-semibold shrink-0 ${filter === f.key ? "bg-[#2E6FBE] text-white" : "bg-white text-[#1E2A3A] shadow-sm"}`}
+                  onClick={() => { setFilter(f.key); setVisibleCount(30); }}
+                  className={`px-3.5 py-2 rounded-full text-[13px] font-semibold shrink-0 ${activeFilter === f.key ? "bg-[#2E6FBE] text-white" : "bg-white text-[#1E2A3A] shadow-sm"}`}
                 >
                   {f.label}
                 </button>
@@ -1599,6 +1602,11 @@ function StatsScreen({ packs, history, loading, onDeleteEntry, onClearAll, onGoP
                 </div>
               );
             })}
+            {visibleHistory.length < filteredHistory.length && (
+              <PillButton variant="outline" onClick={() => setVisibleCount((count) => count + 30)}>
+                기록 더 보기 ({visibleHistory.length}/{filteredHistory.length})
+              </PillButton>
+            )}
           </div>
         </>
       )}
