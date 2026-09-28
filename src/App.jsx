@@ -1338,7 +1338,8 @@ function WrongNoteScreen({ packs, wrongMap, loading, onRetest, onRemoveWord }) {
   const [filter, setFilter] = useState("all");
   const [expanded, setExpanded] = useState(null);
 
-  const visible = filter === "all" ? entries : entries.filter(([id]) => id === filter);
+  const activeFilter = entries.some(([id]) => id === filter) ? filter : "all";
+  const visible = activeFilter === "all" ? entries : entries.filter(([id]) => id === activeFilter);
 
   return (
     <div>
@@ -1352,7 +1353,7 @@ function WrongNoteScreen({ packs, wrongMap, loading, onRetest, onRemoveWord }) {
         <div className="px-5 flex gap-2 mb-4 overflow-x-auto">
           <button
             onClick={() => setFilter("all")}
-            className={`px-3.5 py-2 rounded-full text-[13px] font-semibold shrink-0 ${filter === "all" ? "bg-[#2E6FBE] text-white" : "bg-white text-[#1E2A3A] shadow-sm"}`}
+            className={`px-3.5 py-2 rounded-full text-[13px] font-semibold shrink-0 ${activeFilter === "all" ? "bg-[#2E6FBE] text-white" : "bg-white text-[#1E2A3A] shadow-sm"}`}
           >
             전체 {total}
           </button>
@@ -1360,7 +1361,7 @@ function WrongNoteScreen({ packs, wrongMap, loading, onRetest, onRemoveWord }) {
             <button
               key={id}
               onClick={() => setFilter(id)}
-              className={`px-3.5 py-2 rounded-full text-[13px] font-semibold shrink-0 ${filter === id ? "bg-[#2E6FBE] text-white" : "bg-white text-[#1E2A3A] shadow-sm"}`}
+              className={`px-3.5 py-2 rounded-full text-[13px] font-semibold shrink-0 ${activeFilter === id ? "bg-[#2E6FBE] text-white" : "bg-white text-[#1E2A3A] shadow-sm"}`}
             >
               {packNames[id] || "삭제된 팩"} {words.length}
             </button>
@@ -1625,6 +1626,7 @@ export default function App() {
 const {
   data: packs = [],
   isLoading: loadingPacks,
+  error: packsError,
 } = useQuery({
   queryKey: ["packs"],
   queryFn: async () => {
@@ -1636,6 +1638,7 @@ const {
 const {
   data: wrongMap = {},
   isLoading: loadingWrong,
+  error: wrongError,
 } = useQuery({
   queryKey: ["wrongMap"],
   queryFn: loadWrongMap,
@@ -1644,6 +1647,7 @@ const {
 const {
   data: history = [],
   isLoading: loadingHistory,
+  error: historyError,
 } = useQuery({
   queryKey: ["history"],
   queryFn: loadHistory,
@@ -1963,7 +1967,7 @@ const [pendingQuiz, setPendingQuiz] = useState(null);
       <main className="flex-1 min-w-0 min-h-screen overflow-y-auto">
 
         <div className="w-full max-w-7xl mx-auto px-0 sm:px-6 md:px-10 py-4 md:py-6">
-          {(storageError || queryClient.getQueryState(["packs"])?.error || queryClient.getQueryState(["wrongMap"])?.error || queryClient.getQueryState(["history"])?.error) && (
+          {(storageError || packsError || wrongError || historyError) && (
             <div role="alert" className="mb-4 rounded-xl bg-red-50 p-4 text-sm text-red-800">
               {storageError || "학습 데이터를 불러오지 못했어요. 브라우저의 저장 공간과 사이트 데이터 권한을 확인해주세요."}
               <button className="ml-3 underline" onClick={() => runAction(() => queryClient.refetchQueries())}>다시 시도</button>
