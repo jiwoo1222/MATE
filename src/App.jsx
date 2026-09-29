@@ -74,7 +74,7 @@ function speak(text) {
       u.rate = 0.92;
       window.speechSynthesis.speak(u);
     }
-  } catch (e) {}
+  } catch { /* Speech is optional when the browser cannot provide a voice. */ }
 }
 function formatTime(sec) {
   const m = Math.floor(sec / 60);
@@ -104,8 +104,7 @@ function buildDefaultPackObject(defaultPack) {
   };
 }
 
-// 기본 단어팩은 앱을 처음 열었을 때 자동으로 내 단어팩에 들어가도록 합니다.
-// 현재 저장된 단어팩의 sourceKey를 확인해서 없는 기본팩만 추가합니다.
+// 기본팩은 최초 한 번만 추가하고 삭제 이력은 유지합니다.
 async function seedDefaultPacks() {
   await seedPacks(DEFAULT_PACKS, buildDefaultPackObject);
 }
@@ -415,40 +414,6 @@ const DEFAULT_PACKS = [
   },
 ];
 
-function Turtle({ size = 40 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 40 40" fill="none">
-      <ellipse cx="20" cy="22" rx="13" ry="10" fill="#4FB3A9" />
-      <circle cx="13" cy="19" r="1.6" fill="#2E8880" />
-      <circle cx="20" cy="15" r="1.6" fill="#2E8880" />
-      <circle cx="27" cy="19" r="1.6" fill="#2E8880" />
-      <circle cx="20" cy="26" r="1.6" fill="#2E8880" />
-      <circle cx="30" cy="16" r="3.4" fill="#66C4BA" />
-      <ellipse cx="8" cy="27" rx="3.2" ry="2.2" fill="#66C4BA" />
-      <ellipse cx="32" cy="27" rx="3.2" ry="2.2" fill="#66C4BA" />
-      <ellipse cx="13" cy="31" rx="2.6" ry="2" fill="#66C4BA" />
-    </svg>
-  );
-}
-function Shell({ size = 40 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 40 40" fill="none">
-      <path d="M20 8C11 8 6 16 6 24c0 5 5 8 14 8s14-3 14-8c0-8-5-16-14-16z" fill="#FF8A65" />
-      <path d="M20 14v18M14 16c2 5 2 11 0 15M26 16c-2 5-2 11 0 15" stroke="#E8663F" strokeWidth="1.6" strokeLinecap="round" />
-    </svg>
-  );
-}
-function StarFish({ size = 40 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 40 40" fill="none">
-      <path
-        d="M20 4l4.4 10.6L35 17l-8.4 7.4L29 35l-9-6-9 6 2.4-10.6L5 17l10.6-2.4z"
-        fill="#FFB74D"
-      />
-      <circle cx="20" cy="21" r="2.4" fill="#F08C2A" />
-    </svg>
-  );
-}
 function Fish({ size = 40 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 40 40" fill="none">
@@ -467,30 +432,6 @@ function Jellyfish({ size = 40 }) {
         d="M13 22c0 4-2 5-2 9M20 23c0 4 1 6 1 10M27 22c0 4 2 5 2 9"
         stroke="#6C82D6"
         strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-function Whale({ size = 56 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none">
-      <path
-        d="M8 34c0-10 10-18 24-18 12 0 22 6 24 14-2 6-8 10-16 11l-2 5-4-4c-10 1-26-2-26-8z"
-        fill="#2E6FBE"
-      />
-      <circle cx="20" cy="30" r="2" fill="#fff" />
-      <path d="M30 12c0-4 2-6 2-6s2 2 2 6" stroke="#8FB4E8" strokeWidth="2.2" strokeLinecap="round" />
-    </svg>
-  );
-}
-function Coral({ size = 40 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 40 40" fill="none">
-      <path
-        d="M10 36V22c0-4 4-6 4-10M14 36V26c0-3 3-4 3-8M20 36V20c0-5 5-7 5-12M26 36V24c0-3 3-4 3-8M30 36V26c0-3 2-4 2-7"
-        stroke="#FF8A65"
-        strokeWidth="2.6"
         strokeLinecap="round"
       />
     </svg>
@@ -1622,6 +1563,9 @@ export default function App() {
   const [editingId, setEditingId] = useState(null);
   const [savedPack, setSavedPack] = useState(null);
   const [saving, setSaving] = useState(false);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [view, packsStep]);
   const [storageError, setStorageError] = useState("");
   async function runAction(action) {
     setStorageError("");
@@ -1771,27 +1715,26 @@ const [pendingQuiz, setPendingQuiz] = useState(null);
     if (saving) return;
     setSaving(true);
     try {
-    const existing = editingId ? await getJSON("pack:" + editingId) : null;
-    const pack = {
-      ...(existing || {}),
-      id: editingId || uid(),
-      name,
-      words: words.map((w) => ({
-        id: w.id || uid(),
-        en: w.en.trim(),
-        ko: w.ko.trim(),
-        meanings: (w.meanings && w.meanings.length ? w.meanings : splitMeanings(w.ko)),
-        ...(w.related && w.related.trim() ? { related: w.related.trim() } : {}),
-      })),
-      createdAt: existing?.createdAt || Date.now(),
-    };
-    await setJSON("pack:" + pack.id, pack);
-    setSaving(false);
-    setSavedPack(pack);
-    setPacksStep("success");
-    await queryClient.invalidateQueries({
-      queryKey: ["packs"],
-    });
+      const existing = editingId ? await getJSON("pack:" + editingId) : null;
+      const pack = {
+        ...(existing || {}),
+        id: editingId || uid(),
+        name,
+        words: words.map((w) => ({
+          id: w.id || uid(),
+          en: w.en.trim(),
+          ko: w.ko.trim(),
+          meanings: (w.meanings && w.meanings.length ? w.meanings : splitMeanings(w.ko)),
+          ...(w.related && w.related.trim() ? { related: w.related.trim() } : {}),
+        })),
+        createdAt: existing?.createdAt || Date.now(),
+      };
+      await setJSON("pack:" + pack.id, pack);
+      setSavedPack(pack);
+      setPacksStep("success");
+      await queryClient.invalidateQueries({
+        queryKey: ["packs"],
+      });
     } finally { setSaving(false); }
   }
 
