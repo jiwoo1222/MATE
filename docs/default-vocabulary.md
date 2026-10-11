@@ -116,3 +116,4 @@
 | 토익단어DAY7 | bill | 청구서 | — |
 | 토익단어DAY7 | quarter | 분기 | — |
 | 토익단어DAY7 | effect | 영향 | 파생어: effective |
+| 토익단어DAY7 | effective | 효과적인 | 파생어: effect |
