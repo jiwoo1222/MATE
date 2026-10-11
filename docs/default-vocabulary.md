@@ -7,3 +7,4 @@
 | --- | --- | --- | --- |
 | 토익단어DAY6 | pleased | 기쁜 | — |
 | 토익단어DAY6 | pleasure | 기쁨 | 파생어: pleased |
+| 토익단어DAY6 | attach | 붙이다, 부착하다 | 반의어: detach |
