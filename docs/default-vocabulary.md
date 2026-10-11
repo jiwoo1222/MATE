@@ -46,3 +46,4 @@
 | 토익단어DAY6 | supervise | 감독하다 | — |
 | 토익단어DAY6 | expense | 경비 | — |
 | 토익단어DAY6 | upcoming | 다가오는 | — |
+| 토익단어DAY6 | own | 소유하다 | — |
