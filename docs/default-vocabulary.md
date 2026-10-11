@@ -92,3 +92,4 @@
 | 토익단어DAY7 | inconvenience | 불편 | 반의어: convenience |
 | 토익단어DAY7 | invest | 투자하다 | — |
 | 토익단어DAY7 | conduct | 수행하다 | — |
+| 토익단어DAY7 | exhibit | 전시하다 | — |
