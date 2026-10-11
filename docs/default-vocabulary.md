@@ -74,3 +74,4 @@
 | 토익단어DAY7 | donate | 기부하다 | — |
 | 토익단어DAY7 | patient | 환자 | — |
 | 토익단어DAY7 | expert | 전문가 | 파생어: expertise |
+| 토익단어DAY7 | expertise | 전문 지식 | 파생어: expert |
