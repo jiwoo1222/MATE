@@ -57,3 +57,4 @@
 | 토익단어DAY6 | facility | 시설 | — |
 | 토익단어DAY6 | view | 전망, 보다 | 파생어: overview, preview |
 | 토익단어DAY6 | overview | 개요 | 파생어: view, preview |
+| 토익단어DAY6 | preview | 시사회 | 파생어: view, overview |
