@@ -61,3 +61,5 @@
 | 토익단어DAY6 | benefit | 이익 | — |
 | 토익단어DAY6 | medical | 의료의 | 파생어: medication, medicine |
 | 토익단어DAY6 | medication | 약 | 파생어: medical, medicine |
+| 토익단어DAY6 | medicine | 약, 의학 | 파생어: medical, medication |
+| 토익단어DAY6 | safe | 금고, 안전한 | — |
