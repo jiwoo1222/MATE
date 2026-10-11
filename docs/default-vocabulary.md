@@ -94,3 +94,4 @@
 | 토익단어DAY7 | conduct | 수행하다 | — |
 | 토익단어DAY7 | exhibit | 전시하다 | — |
 | 토익단어DAY7 | code | 암호, 규정, 코드 | — |
+| 토익단어DAY7 | miss | 놓치다, 그리워하다 | 파생어: missing |
