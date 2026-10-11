@@ -82,3 +82,4 @@
 | 토익단어DAY7 | rate | 요금, 비율, 평가하다 | — |
 | 토익단어DAY7 | credit | 신용, 적립금 | 파생어: accredited |
 | 토익단어DAY7 | accredited | 승인된 | 파생어: credit |
+| 토익단어DAY7 | deadline | 마감 | — |
