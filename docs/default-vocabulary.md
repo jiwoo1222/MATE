@@ -118,3 +118,5 @@
 | 토익단어DAY7 | effect | 영향 | 파생어: effective |
 | 토익단어DAY7 | effective | 효과적인 | 파생어: effect |
 | 토익단어DAY7 | appreciate | 감사하다 | — |
+| 토익단어DAY7 | society | 협회, 사회 | 파생어: social, socialize |
+| 토익단어DAY7 | social | 사회의 | 파생어: society, socialize |
