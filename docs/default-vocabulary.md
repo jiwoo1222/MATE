@@ -23,3 +23,4 @@
 | 토익단어DAY6 | resource | 자원 | — |
 | 토익단어DAY6 | skilled | 노련한, 숙련된 | — |
 | 토익단어DAY6 | possible | 가능한 | 파생어: possibly |
+| 토익단어DAY6 | possibly | 아마도, 가능하게도 | 파생어: possible |
