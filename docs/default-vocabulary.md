@@ -38,3 +38,5 @@
 | 토익단어DAY6 | advise | 충고하다 | 파생어: advisory |
 | 토익단어DAY6 | advisory | 자문의, 기상 주의보, 충고하는 | 파생어: advise |
 | 토익단어DAY6 | party | 당사자, 단체 | — |
+| 토익단어DAY6 | solve | 해결하다 | 유의어: resolve |
+| 토익단어DAY6 | resolve | 해결하다 | 유의어: solve |
