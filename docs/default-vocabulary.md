@@ -55,3 +55,5 @@
 | 토익단어DAY6 | encourage | 권장하다 | 반의어: discourage |
 | 토익단어DAY6 | discourage | 좌절시키다 | 반의어: encourage |
 | 토익단어DAY6 | facility | 시설 | — |
+| 토익단어DAY6 | view | 전망, 보다 | 파생어: overview, preview |
+| 토익단어DAY6 | overview | 개요 | 파생어: view, preview |
