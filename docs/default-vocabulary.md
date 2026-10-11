@@ -109,3 +109,4 @@
 | 토익단어DAY7 | originate | 유래되다 | 파생어: original, origin |
 | 토익단어DAY7 | volunteer | 자원하다, 자원봉사자 | 파생어: voluntary |
 | 토익단어DAY7 | voluntary | 자발적인 | 파생어: volunteer |
+| 토익단어DAY7 | previous | 이전의 | — |
