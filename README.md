@@ -1,16 +1,85 @@
-# React + Vite
+# MATE
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+영어 단어팩을 만들고 퀴즈와 오답노트로 복습하는 React 웹 앱입니다.
+학습 데이터는 현재 브라우저의 `localStorage`에 저장됩니다.
 
-Currently, two official plugins are available:
+## 실행
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Node.js와 npm을 설치한 환경에서 저장소 루트에서 실행합니다.
 
-## React Compiler
+```sh
+npm ci
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+터미널에 표시되는 개발 서버 주소를 브라우저에서 엽니다.
 
-## Expanding the Oxlint configuration
+## 명령어
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+| 명령어 | 용도 |
+| --- | --- |
+| `npm run dev` | Vite 개발 서버 실행 |
+| `npm run build` | 배포용 `dist/` 생성 |
+| `npm run preview` | 빌드 결과 로컬 미리보기 |
+| `npm run lint` | Oxlint 검사 |
+
+## 학습 흐름
+
+1. 홈 또는 내 단어팩에서 학습할 팩을 선택합니다.
+2. 영어 4지선다, 한국어 4지선다, 영어 직접 입력, 한국어로 입력 중 학습 방식을 선택합니다.
+3. 퀴즈를 마치면 점수와 오답을 확인합니다.
+4. 오답노트에서 틀린 단어를 다시 풀거나 개별 단어를 제거합니다.
+5. 학습 통계에서 최근 풀이 기록, 정답률, 소요 시간을 확인합니다.
+
+## 단어팩 만들기
+
+내 단어팩의 직접 입력 화면에서 한 줄에 한 단어씩 입력합니다.
+영어와 뜻을 쉼표로 구분하거나, 세로줄로 영어·뜻·관련어를 구분합니다.
+
+```text
+apple, 사과
+attach | 붙이다, 부착하다 | 반의어: detach
+```
+
+영어와 뜻이 모두 있어야 단어로 읽어 들입니다. 빈 줄은 무시하며 최대 60개까지 읽습니다.
+여러 뜻은 쉼표로 구분합니다. 미리보기에서 이름과 단어를 확인하고 저장합니다.
+기존 팩도 수정하거나 삭제할 수 있습니다.
+
+## 기본 단어팩
+
+토익단어DAY6부터 DAY9까지 기본 단어팩을 제공합니다.
+팩 목록을 불러올 때 `sourceKey`를 기준으로 빠진 기본팩을 추가합니다.
+기본팩을 삭제하더라도 목록을 다시 불러올 때 추가될 수 있습니다.
+전체 수록 단어와 관련어는 [기본 단어팩 참고표](docs/default-vocabulary.md)에서 확인합니다.
+참고표는 `src/App.jsx`의 `DEFAULT_PACKS`를 옮긴 것으로, 앱 데이터를 변경할 때 함께 갱신합니다.
+
+## 저장 방식
+
+| 키 | 내용 |
+| --- | --- |
+| `pack:<id>` | 단어팩 이름, 단어 목록, 생성 시각 |
+| `wrongnote:<packId>` | 단어팩별 오답 목록 |
+| `history:<id>` | 퀴즈 모드, 점수, 문제 수, 소요 시간, 풀이 시각 |
+
+브라우저나 접속 주소가 바뀌면 저장소도 달라집니다.
+브라우저 사이트 데이터를 지우면 저장된 학습 데이터가 사라질 수 있습니다.
+서버 계정이나 기기 간 동기화 기능은 현재 구현되어 있지 않습니다.
+영어 발음 재생은 브라우저의 음성 합성 기능을 사용합니다.
+
+## 코드 구성
+
+| 경로 | 역할 |
+| --- | --- |
+| `src/main.jsx` | React 진입점과 QueryClientProvider 구성 |
+| `src/App.jsx` | 화면, 퀴즈, 기본 단어팩, 저장소 함수 |
+| `src/index.css` | Tailwind 로드와 전역 스타일 |
+| `public/` | 로고와 아이콘 정적 자산 |
+| `vite.config.js` | React 및 Tailwind Vite 플러그인 설정 |
+
+React와 TanStack Query로 화면과 학습 데이터를 관리하며 Tailwind CSS와 Lucide 아이콘을 사용합니다.
+팩·오답·기록을 변경한 뒤 해당 쿼리를 무효화해 화면 데이터를 갱신합니다.
+
+## 문서 변경 확인
+
+기본 단어 참고표는 원본의 영어, 한국어 뜻, 관련어와 순서를 대조합니다.
+실행 방법이나 스크립트를 바꿀 때는 `package.json`과 문서가 일치하는지 확인합니다.
