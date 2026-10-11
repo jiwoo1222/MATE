@@ -28,3 +28,4 @@
 | 토익단어DAY6 | representative | 담당자, 대표자 | 파생어: represent |
 | 토익단어DAY6 | fix | 수리하다 | 파생어: fixture |
 | 토익단어DAY6 | fixture | 설비 | 파생어: fix |
+| 토익단어DAY6 | record | 기록, 기록하다 | — |
