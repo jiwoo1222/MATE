@@ -43,3 +43,5 @@
 | 토익단어DAY6 | text | 글자, 글, 문자 메시지를 보내다 | — |
 | 토익단어DAY6 | context | 맥락 | — |
 | 토익단어DAY6 | point | 가리키다, 지적하다, 의견 | — |
+| 토익단어DAY6 | supervise | 감독하다 | — |
+| 토익단어DAY6 | expense | 경비 | — |
