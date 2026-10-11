@@ -12,3 +12,4 @@
 | 토익단어DAY6 | fluent | 유창한 | — |
 | 토익단어DAY6 | limit | 제한, 제한하다 | 파생어: limited |
 | 토익단어DAY6 | limited | 제한된 | 파생어: limit |
+| 토익단어DAY6 | due | 만기가 된, ~하기로 되어 있는 | 파생어: due to, overdue |
