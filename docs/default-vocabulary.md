@@ -32,3 +32,5 @@
 | 토익단어DAY6 | forward | 앞으로, 보내다 | — |
 | 토익단어DAY6 | pass | 지나가다, 건네다, 통행권 | 파생어: passenger, surpass |
 | 토익단어DAY6 | passenger | 승객 | 파생어: pass |
+| 토익단어DAY6 | surpass | 뛰어넘다 | 파생어: pass |
+| 토익단어DAY6 | sample | 시식하다, 견본, 표본 | — |
