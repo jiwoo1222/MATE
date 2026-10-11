@@ -47,3 +47,4 @@
 | 토익단어DAY6 | expense | 경비 | — |
 | 토익단어DAY6 | upcoming | 다가오는 | — |
 | 토익단어DAY6 | own | 소유하다 | — |
+| 토익단어DAY6 | celebrate | 축하하다 | 파생어: celebrity |
