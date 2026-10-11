@@ -11,3 +11,4 @@
 | 토익단어DAY6 | detach | 분리하다 | 반의어: attach |
 | 토익단어DAY6 | fluent | 유창한 | — |
 | 토익단어DAY6 | limit | 제한, 제한하다 | 파생어: limited |
+| 토익단어DAY6 | limited | 제한된 | 파생어: limit |
