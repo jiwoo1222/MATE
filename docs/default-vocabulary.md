@@ -45,3 +45,4 @@
 | 토익단어DAY6 | point | 가리키다, 지적하다, 의견 | — |
 | 토익단어DAY6 | supervise | 감독하다 | — |
 | 토익단어DAY6 | expense | 경비 | — |
+| 토익단어DAY6 | upcoming | 다가오는 | — |
