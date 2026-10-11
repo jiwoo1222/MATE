@@ -14,3 +14,4 @@
 | 토익단어DAY6 | limited | 제한된 | 파생어: limit |
 | 토익단어DAY6 | due | 만기가 된, ~하기로 되어 있는 | 파생어: due to, overdue |
 | 토익단어DAY6 | due to | ~때문에, ~덕분에, ~탓에 | — |
+| 토익단어DAY6 | overdue | 기한이 지난 | 파생어: due |
