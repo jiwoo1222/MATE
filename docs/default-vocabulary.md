@@ -101,3 +101,5 @@
 | 토익단어DAY7 | complain | 불평하다 | — |
 | 토익단어DAY7 | distribute | 배포하다 | — |
 | 토익단어DAY7 | belong | ~에 속하다 | 파생어: belongings |
+| 토익단어DAY7 | belongings | 소지품 | 파생어: belong |
+| 토익단어DAY7 | personal | 개인의 | 파생어: personalize |
