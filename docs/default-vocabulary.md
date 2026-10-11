@@ -9,3 +9,5 @@
 | 토익단어DAY6 | pleasure | 기쁨 | 파생어: pleased |
 | 토익단어DAY6 | attach | 붙이다, 부착하다 | 반의어: detach |
 | 토익단어DAY6 | detach | 분리하다 | 반의어: attach |
+| 토익단어DAY6 | fluent | 유창한 | — |
+| 토익단어DAY6 | limit | 제한, 제한하다 | 파생어: limited |
