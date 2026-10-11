@@ -30,3 +30,4 @@
 | 토익단어DAY6 | fixture | 설비 | 파생어: fix |
 | 토익단어DAY6 | record | 기록, 기록하다 | — |
 | 토익단어DAY6 | forward | 앞으로, 보내다 | — |
+| 토익단어DAY6 | pass | 지나가다, 건네다, 통행권 | 파생어: passenger, surpass |
