@@ -95,3 +95,5 @@
 | 토익단어DAY7 | exhibit | 전시하다 | — |
 | 토익단어DAY7 | code | 암호, 규정, 코드 | — |
 | 토익단어DAY7 | miss | 놓치다, 그리워하다 | 파생어: missing |
+| 토익단어DAY7 | missing | 잃어버린 | 파생어: miss |
+| 토익단어DAY7 | partner | 파트너, 제휴하다 | — |
