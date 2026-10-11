@@ -106,3 +106,5 @@
 | 토익단어DAY7 | personalize | 개인의 필요에 맞추다 | 파생어: personal |
 | 토익단어DAY7 | original | 원래의, 독창적인, 원본 | 파생어: origin, originate |
 | 토익단어DAY7 | origin | 기원 | 파생어: original, originate |
+| 토익단어DAY7 | originate | 유래되다 | 파생어: original, origin |
+| 토익단어DAY7 | volunteer | 자원하다, 자원봉사자 | 파생어: voluntary |
