@@ -34,3 +34,4 @@
 | 토익단어DAY6 | passenger | 승객 | 파생어: pass |
 | 토익단어DAY6 | surpass | 뛰어넘다 | 파생어: pass |
 | 토익단어DAY6 | sample | 시식하다, 견본, 표본 | — |
+| 토익단어DAY6 | extra | 추가의, 추가로 | — |
