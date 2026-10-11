@@ -26,3 +26,5 @@
 | 토익단어DAY6 | possibly | 아마도, 가능하게도 | 파생어: possible |
 | 토익단어DAY6 | represent | 대표하다 | 파생어: representative |
 | 토익단어DAY6 | representative | 담당자, 대표자 | 파생어: represent |
+| 토익단어DAY6 | fix | 수리하다 | 파생어: fixture |
+| 토익단어DAY6 | fixture | 설비 | 파생어: fix |
