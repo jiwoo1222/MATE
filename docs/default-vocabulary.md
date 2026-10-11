@@ -83,3 +83,5 @@
 | 토익단어DAY7 | credit | 신용, 적립금 | 파생어: accredited |
 | 토익단어DAY7 | accredited | 승인된 | 파생어: credit |
 | 토익단어DAY7 | deadline | 마감 | — |
+| 토익단어DAY7 | commit | 헌신하다 | 파생어: committee, commission |
+| 토익단어DAY7 | committee | 위원회 | 파생어: commit, commission |
