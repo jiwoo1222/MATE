@@ -111,3 +111,4 @@
 | 토익단어DAY7 | voluntary | 자발적인 | 파생어: volunteer |
 | 토익단어DAY7 | previous | 이전의 | — |
 | 토익단어DAY7 | identify | 확인하다 | 파생어: identity |
+| 토익단어DAY7 | identity | 신원 | 파생어: identify |
