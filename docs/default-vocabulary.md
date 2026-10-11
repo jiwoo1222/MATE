@@ -88,3 +88,4 @@
 | 토익단어DAY7 | commission | 위원회, 수수료, 의뢰하다 | 파생어: commit, committee |
 | 토익단어DAY7 | fair | 박람회, 공정한, 괜찮은 | 파생어: fairly |
 | 토익단어DAY7 | fairly | 상당히, 꽤 | 파생어: fair |
+| 토익단어DAY7 | convenience | 편의 | 반의어: inconvenience |
