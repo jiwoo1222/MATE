@@ -41,3 +41,4 @@
 | 토익단어DAY6 | solve | 해결하다 | 유의어: resolve |
 | 토익단어DAY6 | resolve | 해결하다 | 유의어: solve |
 | 토익단어DAY6 | text | 글자, 글, 문자 메시지를 보내다 | — |
+| 토익단어DAY6 | context | 맥락 | — |
