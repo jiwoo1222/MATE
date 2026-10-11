@@ -17,3 +17,4 @@
 | 토익단어DAY6 | overdue | 기한이 지난 | 파생어: due |
 | 토익단어DAY6 | launch | 출시, 출시하다 | — |
 | 토익단어DAY6 | flood | 홍수, 물에 잠기다 | — |
+| 토익단어DAY6 | base | 기반, 근거하다 | 파생어: basis |
