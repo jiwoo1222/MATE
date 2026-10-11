@@ -64,3 +64,4 @@
 | 토익단어DAY6 | medicine | 약, 의학 | 파생어: medical, medication |
 | 토익단어DAY6 | safe | 금고, 안전한 | — |
 | 토익단어DAY6 | load | 짐, 짐을 싣다 | — |
+| 토익단어DAY6 | download | 다운로드하다, 내려받다 | — |
