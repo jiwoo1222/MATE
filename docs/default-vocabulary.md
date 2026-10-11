@@ -59,3 +59,4 @@
 | 토익단어DAY6 | overview | 개요 | 파생어: view, preview |
 | 토익단어DAY6 | preview | 시사회 | 파생어: view, overview |
 | 토익단어DAY6 | benefit | 이익 | — |
+| 토익단어DAY6 | medical | 의료의 | 파생어: medication, medicine |
