@@ -100,3 +100,4 @@
 | 토익단어DAY7 | express | 표현하다, 신속한 | — |
 | 토익단어DAY7 | complain | 불평하다 | — |
 | 토익단어DAY7 | distribute | 배포하다 | — |
+| 토익단어DAY7 | belong | ~에 속하다 | 파생어: belongings |
