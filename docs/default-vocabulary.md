@@ -21,3 +21,5 @@
 | 토익단어DAY6 | basis | 근거 | 파생어: base |
 | 토익단어DAY6 | revise | 수정하다 | — |
 | 토익단어DAY6 | resource | 자원 | — |
+| 토익단어DAY6 | skilled | 노련한, 숙련된 | — |
+| 토익단어DAY6 | possible | 가능한 | 파생어: possibly |
