@@ -85,3 +85,4 @@
 | 토익단어DAY7 | deadline | 마감 | — |
 | 토익단어DAY7 | commit | 헌신하다 | 파생어: committee, commission |
 | 토익단어DAY7 | committee | 위원회 | 파생어: commit, commission |
+| 토익단어DAY7 | commission | 위원회, 수수료, 의뢰하다 | 파생어: commit, committee |
