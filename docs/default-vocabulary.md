@@ -77,3 +77,4 @@
 | 토익단어DAY7 | expertise | 전문 지식 | 파생어: expert |
 | 토익단어DAY7 | corporate | 법인의 | 파생어: incorporate |
 | 토익단어DAY7 | incorporate | 포함하다 | 파생어: corporate |
+| 토익단어DAY7 | media | 대중 매체 | 파생어: medium |
