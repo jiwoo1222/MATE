@@ -114,3 +114,4 @@
 | 토익단어DAY7 | identity | 신원 | 파생어: identify |
 | 토익단어DAY7 | hall | 홀, 넓은 방, 복도 | — |
 | 토익단어DAY7 | bill | 청구서 | — |
+| 토익단어DAY7 | quarter | 분기 | — |
