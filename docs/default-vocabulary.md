@@ -120,3 +120,4 @@
 | 토익단어DAY7 | appreciate | 감사하다 | — |
 | 토익단어DAY7 | society | 협회, 사회 | 파생어: social, socialize |
 | 토익단어DAY7 | social | 사회의 | 파생어: society, socialize |
+| 토익단어DAY7 | socialize | 교제하다 | 파생어: society, social |
