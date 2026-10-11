@@ -25,3 +25,4 @@
 | 토익단어DAY6 | possible | 가능한 | 파생어: possibly |
 | 토익단어DAY6 | possibly | 아마도, 가능하게도 | 파생어: possible |
 | 토익단어DAY6 | represent | 대표하다 | 파생어: representative |
+| 토익단어DAY6 | representative | 담당자, 대표자 | 파생어: represent |
