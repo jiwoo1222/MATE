@@ -104,3 +104,4 @@
 | 토익단어DAY7 | belongings | 소지품 | 파생어: belong |
 | 토익단어DAY7 | personal | 개인의 | 파생어: personalize |
 | 토익단어DAY7 | personalize | 개인의 필요에 맞추다 | 파생어: personal |
+| 토익단어DAY7 | original | 원래의, 독창적인, 원본 | 파생어: origin, originate |
