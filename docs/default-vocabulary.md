@@ -54,3 +54,4 @@
 | 토익단어DAY6 | specification | 명세서, 사양 | 파생어: specific, specify |
 | 토익단어DAY6 | encourage | 권장하다 | 반의어: discourage |
 | 토익단어DAY6 | discourage | 좌절시키다 | 반의어: encourage |
+| 토익단어DAY6 | facility | 시설 | — |
