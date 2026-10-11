@@ -15,3 +15,5 @@
 | 토익단어DAY6 | due | 만기가 된, ~하기로 되어 있는 | 파생어: due to, overdue |
 | 토익단어DAY6 | due to | ~때문에, ~덕분에, ~탓에 | — |
 | 토익단어DAY6 | overdue | 기한이 지난 | 파생어: due |
+| 토익단어DAY6 | launch | 출시, 출시하다 | — |
+| 토익단어DAY6 | flood | 홍수, 물에 잠기다 | — |
