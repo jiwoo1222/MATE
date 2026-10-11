@@ -78,3 +78,5 @@
 | 토익단어DAY7 | corporate | 법인의 | 파생어: incorporate |
 | 토익단어DAY7 | incorporate | 포함하다 | 파생어: corporate |
 | 토익단어DAY7 | media | 대중 매체 | 파생어: medium |
+| 토익단어DAY7 | medium | 중간의 | 파생어: media |
+| 토익단어DAY7 | rate | 요금, 비율, 평가하다 | — |
