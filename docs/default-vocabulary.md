@@ -184,3 +184,4 @@
 | 토익단어DAY8 | official | 공무원, 공식적인 | — |
 | 토익단어DAY8 | trade | 무역, 교환하다 | — |
 | 토익단어DAY8 | upgrade | 업그레이드하다, 개선 | 파생어: grade |
+| 토익단어DAY8 | grade | 등급, 성적 | 파생어: upgrade |
