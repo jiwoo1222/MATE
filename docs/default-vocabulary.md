@@ -218,3 +218,4 @@
 | 토익단어DAY9 | deal | 거래, 처리하다 | — |
 | 토익단어DAY9 | practice | 연습, 관행, 연습하다 | 파생어: practical |
 | 토익단어DAY9 | practical | 실용적인 | 파생어: practice |
+| 토익단어DAY9 | suit | 정장, 적합하다 | 파생어: suitable, suitcase |
