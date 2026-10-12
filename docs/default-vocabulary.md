@@ -236,3 +236,4 @@
 | 토익단어DAY9 | found | 설립하다 | 파생어: foundation |
 | 토익단어DAY9 | foundation | 토대 | 파생어: found |
 | 토익단어DAY9 | prior to | ~에 앞서 | 파생어: priority, prior |
+| 토익단어DAY9 | priority | 우선권 | 파생어: prior to, prior |
