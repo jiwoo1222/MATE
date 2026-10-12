@@ -189,3 +189,4 @@
 | 토익단어DAY9 | impression | 인상 | 파생어: impressive, impressed |
 | 토익단어DAY9 | impressed | 감명을 받은 | 파생어: impressive, impression |
 | 토익단어DAY9 | shelf | 선반 | — |
+| 토익단어DAY9 | retail | 소매의 | — |
