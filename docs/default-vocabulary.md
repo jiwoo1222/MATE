@@ -162,3 +162,4 @@
 | 토익단어DAY8 | authority | 당국, 권위자 | 파생어: authorize |
 | 토익단어DAY8 | commercial | 상업의, 광고 | 파생어: commerce |
 | 토익단어DAY8 | commerce | 상업 | 파생어: commercial |
+| 토익단어DAY8 | region | 지역 | — |
