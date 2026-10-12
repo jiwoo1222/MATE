@@ -192,3 +192,5 @@
 | 토익단어DAY9 | retail | 소매의 | — |
 | 토익단어DAY9 | section | 부분 | 파생어: sector, intersection |
 | 토익단어DAY9 | sector | 분야 | 파생어: section, intersection |
+| 토익단어DAY9 | intersection | 교차로 | 파생어: section, sector |
+| 토익단어DAY9 | communicate | 의사소통하다, 알리다 | — |
