@@ -129,3 +129,5 @@
 | 토익단어DAY8 | certify | 증명하다 | 파생어: certificate |
 | 토익단어DAY8 | contain | 포함하다 | — |
 | 토익단어DAY8 | manual | 매뉴얼, 사용 설명서 | 파생어: manually |
+| 토익단어DAY8 | manually | 손으로, 수동으로 | 파생어: manual |
+| 토익단어DAY8 | focus | 초점 | — |
