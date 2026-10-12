@@ -127,3 +127,4 @@
 | 토익단어DAY7 | opening | 개장, 공석 | — |
 | 토익단어DAY8 | certificate | 증명서 | 파생어: certify |
 | 토익단어DAY8 | certify | 증명하다 | 파생어: certificate |
+| 토익단어DAY8 | contain | 포함하다 | — |
