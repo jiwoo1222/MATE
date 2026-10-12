@@ -213,3 +213,4 @@
 | 토익단어DAY9 | stock | 재고 | — |
 | 토익단어DAY9 | release | 출시, 발표하다 | — |
 | 토익단어DAY9 | real estate | 부동산 | — |
+| 토익단어DAY9 | chef | 요리사 | — |
