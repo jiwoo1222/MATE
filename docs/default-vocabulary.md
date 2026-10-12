@@ -175,3 +175,5 @@
 | 토익단어DAY8 | forecast | 예보, 예상하다 | — |
 | 토익단어DAY8 | regard | 여기다 | 파생어: regardless of, regarding |
 | 토익단어DAY8 | regardless of | ~에 관계없이 | 파생어: regard, regarding |
+| 토익단어DAY8 | regarding | ~에 관하여 | 파생어: regard, regardless of |
+| 토익단어DAY8 | follow | 따라가다, 지시를 따르다 | 파생어: following, follow-up |
