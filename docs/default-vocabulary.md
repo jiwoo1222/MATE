@@ -215,3 +215,5 @@
 | 토익단어DAY9 | real estate | 부동산 | — |
 | 토익단어DAY9 | chef | 요리사 | — |
 | 토익단어DAY9 | responsible | 책임이 있는 | — |
+| 토익단어DAY9 | deal | 거래, 처리하다 | — |
+| 토익단어DAY9 | practice | 연습, 관행, 연습하다 | 파생어: practical |
