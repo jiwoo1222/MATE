@@ -163,3 +163,5 @@
 | 토익단어DAY8 | commercial | 상업의, 광고 | 파생어: commerce |
 | 토익단어DAY8 | commerce | 상업 | 파생어: commercial |
 | 토익단어DAY8 | region | 지역 | — |
+| 토익단어DAY8 | attract | (마음을) 끌다, 유인하다 | 파생어: attractive |
+| 토익단어DAY8 | attractive | 매력적인 | 파생어: attract |
