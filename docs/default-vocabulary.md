@@ -174,3 +174,4 @@
 | 토익단어DAY8 | broadcast | 방송하다, 방송 | — |
 | 토익단어DAY8 | forecast | 예보, 예상하다 | — |
 | 토익단어DAY8 | regard | 여기다 | 파생어: regardless of, regarding |
+| 토익단어DAY8 | regardless of | ~에 관계없이 | 파생어: regard, regarding |
