@@ -146,3 +146,5 @@
 | 토익단어DAY8 | remind | 상기시키다 | — |
 | 토익단어DAY8 | electric | 전기의 | — |
 | 토익단어DAY8 | advance | 발전, 향상시키다, 사전의 | 파생어: advanced |
+| 토익단어DAY8 | advanced | 진보한, 고급의 | 파생어: advance |
+| 토익단어DAY8 | reduce | 줄이다 | — |
