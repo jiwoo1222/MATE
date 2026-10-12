@@ -141,3 +141,5 @@
 | 토익단어DAY8 | instead of | ~대신에 | 파생어: instead |
 | 토익단어DAY8 | branch | 지점, 나뭇가지 | — |
 | 토익단어DAY8 | route | 노선 | 파생어: routine |
+| 토익단어DAY8 | routine | 일상적인, 루틴 | 파생어: route |
+| 토익단어DAY8 | respond | 응답하다 | — |
