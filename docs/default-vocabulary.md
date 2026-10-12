@@ -220,3 +220,4 @@
 | 토익단어DAY9 | practical | 실용적인 | 파생어: practice |
 | 토익단어DAY9 | suit | 정장, 적합하다 | 파생어: suitable, suitcase |
 | 토익단어DAY9 | suitable | 적합한 | 파생어: suit, suitcase |
+| 토익단어DAY9 | suitcase | 여행 가방 | 파생어: suit, suitable |
