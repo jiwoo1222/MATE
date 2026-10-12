@@ -122,3 +122,4 @@
 | 토익단어DAY7 | social | 사회의 | 파생어: society, socialize |
 | 토익단어DAY7 | socialize | 교제하다 | 파생어: society, social |
 | 토익단어DAY7 | special | 특별한 | 파생어: specialize, specialty |
+| 토익단어DAY7 | specialize | 전문으로 하다 | 파생어: special, specialty |
