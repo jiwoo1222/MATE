@@ -186,3 +186,5 @@
 | 토익단어DAY8 | upgrade | 업그레이드하다, 개선 | 파생어: grade |
 | 토익단어DAY8 | grade | 등급, 성적 | 파생어: upgrade |
 | 토익단어DAY9 | impressive | 인상적인 | 파생어: impression, impressed |
+| 토익단어DAY9 | impression | 인상 | 파생어: impressive, impressed |
+| 토익단어DAY9 | impressed | 감명을 받은 | 파생어: impressive, impression |
