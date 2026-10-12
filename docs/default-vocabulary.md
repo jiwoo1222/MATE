@@ -155,3 +155,4 @@
 | 토익단어DAY8 | associate | 동료, 관련시키다 | — |
 | 토익단어DAY8 | apologize | 사과하다 | — |
 | 토익단어DAY8 | clear | 분명한 | 파생어: clearance, clarify |
+| 토익단어DAY8 | clearance | 정리, 허가 | 파생어: clear, clarify |
