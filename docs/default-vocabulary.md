@@ -211,3 +211,4 @@
 | 토익단어DAY9 | brochure | 소책자 | — |
 | 토익단어DAY9 | agenda | 안건 | — |
 | 토익단어DAY9 | stock | 재고 | — |
+| 토익단어DAY9 | release | 출시, 발표하다 | — |
