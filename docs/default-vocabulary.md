@@ -205,3 +205,4 @@
 | 토익단어DAY9 | short | 짧은, 부족한 | — |
 | 토익단어DAY9 | stand | 서다, 정류장, 노점 | 파생어: outstanding |
 | 토익단어DAY9 | outstanding | 뛰어난 | 파생어: stand |
+| 토익단어DAY9 | damage | 피해, 피해를 입히다 | — |
