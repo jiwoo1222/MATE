@@ -208,3 +208,4 @@
 | 토익단어DAY9 | damage | 피해, 피해를 입히다 | — |
 | 토익단어DAY9 | demonstrate | 입증하다, 시연하다 | — |
 | 토익단어DAY9 | screen | 화면, 심사하다 | — |
+| 토익단어DAY9 | brochure | 소책자 | — |
