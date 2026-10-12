@@ -160,3 +160,4 @@
 | 토익단어DAY8 | author | 저자 | — |
 | 토익단어DAY8 | authorize | 승인하다 | 파생어: authority |
 | 토익단어DAY8 | authority | 당국, 권위자 | 파생어: authorize |
+| 토익단어DAY8 | commercial | 상업의, 광고 | 파생어: commerce |
