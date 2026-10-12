@@ -168,3 +168,4 @@
 | 토익단어DAY8 | reasonable | 합리적인, 비싸지 않은 | — |
 | 토익단어DAY8 | architect | 건축가 | — |
 | 토익단어DAY8 | state | 미국의 주, 상태, 말하다 | — |
+| 토익단어DAY8 | step | 단계, 걸음, 계단, 걸음을 내딛다 | 파생어: step-by-step, footstep |
