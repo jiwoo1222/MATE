@@ -173,3 +173,4 @@
 | 토익단어DAY8 | footstep | 발자국 | 파생어: step, step-by-step |
 | 토익단어DAY8 | broadcast | 방송하다, 방송 | — |
 | 토익단어DAY8 | forecast | 예보, 예상하다 | — |
+| 토익단어DAY8 | regard | 여기다 | 파생어: regardless of, regarding |
