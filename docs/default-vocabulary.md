@@ -150,3 +150,4 @@
 | 토익단어DAY8 | reduce | 줄이다 | — |
 | 토익단어DAY8 | strategy | 전략 | — |
 | 토익단어DAY8 | connect | 연결하다 | 파생어: connection, disconnect |
+| 토익단어DAY8 | connection | 연결, 인맥 | 파생어: connect, disconnect |
