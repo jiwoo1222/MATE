@@ -196,3 +196,4 @@
 | 토익단어DAY9 | communicate | 의사소통하다, 알리다 | — |
 | 토익단어DAY9 | candidate | 후보자 | — |
 | 토익단어DAY9 | satisfy | 만족시키다 | 파생어: satisfaction, satisfactory |
+| 토익단어DAY9 | satisfaction | 만족 | 파생어: satisfy, satisfactory |
