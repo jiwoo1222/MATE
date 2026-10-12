@@ -243,3 +243,5 @@
 | 토익단어DAY9 | referral | 추천 | 파생어: reference, refer |
 | 토익단어DAY9 | environment | 환경 | — |
 | 토익단어DAY9 | potential | 잠재적인, 잠재력 | — |
+| 토익단어DAY9 | less | 더 적은 | 파생어: lessen |
+| 토익단어DAY9 | lessen | 줄이다 | 파생어: less |
