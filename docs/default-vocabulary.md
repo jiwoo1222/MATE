@@ -195,3 +195,4 @@
 | 토익단어DAY9 | intersection | 교차로 | 파생어: section, sector |
 | 토익단어DAY9 | communicate | 의사소통하다, 알리다 | — |
 | 토익단어DAY9 | candidate | 후보자 | — |
+| 토익단어DAY9 | satisfy | 만족시키다 | 파생어: satisfaction, satisfactory |
