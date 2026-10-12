@@ -225,3 +225,4 @@
 | 토익단어DAY9 | intend | ~할 작정이다, 의도하다 | 파생어: intent |
 | 토익단어DAY9 | intent | 의도, 집중하는 | 파생어: intend |
 | 토익단어DAY9 | surprisingly | 놀랍게도 | — |
+| 토익단어DAY9 | cater | 출장 뷔페를 제공하다 | — |
