@@ -190,3 +190,4 @@
 | 토익단어DAY9 | impressed | 감명을 받은 | 파생어: impressive, impression |
 | 토익단어DAY9 | shelf | 선반 | — |
 | 토익단어DAY9 | retail | 소매의 | — |
+| 토익단어DAY9 | section | 부분 | 파생어: sector, intersection |
