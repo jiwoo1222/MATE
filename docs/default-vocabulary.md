@@ -238,3 +238,5 @@
 | 토익단어DAY9 | prior to | ~에 앞서 | 파생어: priority, prior |
 | 토익단어DAY9 | priority | 우선권 | 파생어: prior to, prior |
 | 토익단어DAY9 | prior | 이전의 | 파생어: prior to, priority |
+| 토익단어DAY9 | reference | 추천서, 참고 | 파생어: refer, referral |
+| 토익단어DAY9 | refer | 참고하다, 언급하다 | 파생어: reference, referral |
