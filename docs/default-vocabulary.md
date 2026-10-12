@@ -191,3 +191,4 @@
 | 토익단어DAY9 | shelf | 선반 | — |
 | 토익단어DAY9 | retail | 소매의 | — |
 | 토익단어DAY9 | section | 부분 | 파생어: sector, intersection |
+| 토익단어DAY9 | sector | 분야 | 파생어: section, intersection |
