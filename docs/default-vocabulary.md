@@ -139,3 +139,4 @@
 | 토익단어DAY8 | underestimate | 과소평가하다 | 파생어: estimate |
 | 토익단어DAY8 | instead | 대신에 | 파생어: instead of |
 | 토익단어DAY8 | instead of | ~대신에 | 파생어: instead |
+| 토익단어DAY8 | branch | 지점, 나뭇가지 | — |
