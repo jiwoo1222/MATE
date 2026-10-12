@@ -209,3 +209,5 @@
 | 토익단어DAY9 | demonstrate | 입증하다, 시연하다 | — |
 | 토익단어DAY9 | screen | 화면, 심사하다 | — |
 | 토익단어DAY9 | brochure | 소책자 | — |
+| 토익단어DAY9 | agenda | 안건 | — |
+| 토익단어DAY9 | stock | 재고 | — |
