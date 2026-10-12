@@ -167,3 +167,4 @@
 | 토익단어DAY8 | attractive | 매력적인 | 파생어: attract |
 | 토익단어DAY8 | reasonable | 합리적인, 비싸지 않은 | — |
 | 토익단어DAY8 | architect | 건축가 | — |
+| 토익단어DAY8 | state | 미국의 주, 상태, 말하다 | — |
