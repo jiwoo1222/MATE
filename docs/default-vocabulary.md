@@ -234,3 +234,4 @@
 | 토익단어DAY9 | attention | 주의 | 파생어: attentive |
 | 토익단어DAY9 | attentive | 주의를 기울이는 | 파생어: attention |
 | 토익단어DAY9 | found | 설립하다 | 파생어: foundation |
+| 토익단어DAY9 | foundation | 토대 | 파생어: found |
