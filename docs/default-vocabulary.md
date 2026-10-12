@@ -202,3 +202,4 @@
 | 토익단어DAY9 | initial | 초기의 | 파생어: initiative, initiate |
 | 토익단어DAY9 | initiative | 주도권, 새로운 계획 | 파생어: initial, initiate |
 | 토익단어DAY9 | initiate | 시작하다 | 파생어: initial, initiative |
+| 토익단어DAY9 | short | 짧은, 부족한 | — |
