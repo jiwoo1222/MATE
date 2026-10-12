@@ -171,3 +171,4 @@
 | 토익단어DAY8 | step | 단계, 걸음, 계단, 걸음을 내딛다 | 파생어: step-by-step, footstep |
 | 토익단어DAY8 | step-by-step | 단계적인 | 파생어: step, footstep |
 | 토익단어DAY8 | footstep | 발자국 | 파생어: step, step-by-step |
+| 토익단어DAY8 | broadcast | 방송하다, 방송 | — |
