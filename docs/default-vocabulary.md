@@ -165,3 +165,4 @@
 | 토익단어DAY8 | region | 지역 | — |
 | 토익단어DAY8 | attract | (마음을) 끌다, 유인하다 | 파생어: attractive |
 | 토익단어DAY8 | attractive | 매력적인 | 파생어: attract |
+| 토익단어DAY8 | reasonable | 합리적인, 비싸지 않은 | — |
