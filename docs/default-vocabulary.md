@@ -226,3 +226,5 @@
 | 토익단어DAY9 | intent | 의도, 집중하는 | 파생어: intend |
 | 토익단어DAY9 | surprisingly | 놀랍게도 | — |
 | 토익단어DAY9 | cater | 출장 뷔페를 제공하다 | — |
+| 토익단어DAY9 | join | 합류하다 | 파생어: joint |
+| 토익단어DAY9 | joint | 합동의 | 파생어: join |
