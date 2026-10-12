@@ -223,3 +223,4 @@
 | 토익단어DAY9 | suitcase | 여행 가방 | 파생어: suit, suitable |
 | 토익단어DAY9 | salary | 급여 | — |
 | 토익단어DAY9 | intend | ~할 작정이다, 의도하다 | 파생어: intent |
+| 토익단어DAY9 | intent | 의도, 집중하는 | 파생어: intend |
