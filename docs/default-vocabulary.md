@@ -133,3 +133,4 @@
 | 토익단어DAY8 | focus | 초점 | — |
 | 토익단어DAY8 | reach | 도달하다, 연락하다, 뻗다 | 파생어: outreach |
 | 토익단어DAY8 | outreach | 봉사 활동 | 파생어: reach |
+| 토익단어DAY8 | permit | 허용하다 | — |
