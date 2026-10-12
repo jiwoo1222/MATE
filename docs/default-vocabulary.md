@@ -144,3 +144,4 @@
 | 토익단어DAY8 | routine | 일상적인, 루틴 | 파생어: route |
 | 토익단어DAY8 | respond | 응답하다 | — |
 | 토익단어DAY8 | remind | 상기시키다 | — |
+| 토익단어DAY8 | electric | 전기의 | — |
