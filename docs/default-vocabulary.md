@@ -181,3 +181,5 @@
 | 토익단어DAY8 | follow-up | 후속 조치, 후속의 | 파생어: follow, following |
 | 토익단어DAY8 | convention | 대회 | — |
 | 토익단어DAY8 | regular | 정기적인 | — |
+| 토익단어DAY8 | official | 공무원, 공식적인 | — |
+| 토익단어DAY8 | trade | 무역, 교환하다 | — |
