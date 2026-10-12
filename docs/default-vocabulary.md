@@ -149,3 +149,4 @@
 | 토익단어DAY8 | advanced | 진보한, 고급의 | 파생어: advance |
 | 토익단어DAY8 | reduce | 줄이다 | — |
 | 토익단어DAY8 | strategy | 전략 | — |
+| 토익단어DAY8 | connect | 연결하다 | 파생어: connection, disconnect |
