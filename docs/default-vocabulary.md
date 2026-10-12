@@ -178,3 +178,4 @@
 | 토익단어DAY8 | regarding | ~에 관하여 | 파생어: regard, regardless of |
 | 토익단어DAY8 | follow | 따라가다, 지시를 따르다 | 파생어: following, follow-up |
 | 토익단어DAY8 | following | 다음의, ~후에 | 파생어: follow, follow-up |
+| 토익단어DAY8 | follow-up | 후속 조치, 후속의 | 파생어: follow, following |
