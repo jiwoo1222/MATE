@@ -203,3 +203,5 @@
 | 토익단어DAY9 | initiative | 주도권, 새로운 계획 | 파생어: initial, initiate |
 | 토익단어DAY9 | initiate | 시작하다 | 파생어: initial, initiative |
 | 토익단어DAY9 | short | 짧은, 부족한 | — |
+| 토익단어DAY9 | stand | 서다, 정류장, 노점 | 파생어: outstanding |
+| 토익단어DAY9 | outstanding | 뛰어난 | 파생어: stand |
