@@ -231,3 +231,4 @@
 | 토익단어DAY9 | degree | 학위, 온도, 정도 | — |
 | 토익단어DAY9 | qualify | 자격을 주다 | 파생어: qualification |
 | 토익단어DAY9 | qualification | 자격 | 파생어: qualify |
+| 토익단어DAY9 | attention | 주의 | 파생어: attentive |
