@@ -123,3 +123,5 @@
 | 토익단어DAY7 | socialize | 교제하다 | 파생어: society, social |
 | 토익단어DAY7 | special | 특별한 | 파생어: specialize, specialty |
 | 토익단어DAY7 | specialize | 전문으로 하다 | 파생어: special, specialty |
+| 토익단어DAY7 | specialty | 특산품, 전문 분야 | 파생어: special, specialize |
+| 토익단어DAY7 | opening | 개장, 공석 | — |
