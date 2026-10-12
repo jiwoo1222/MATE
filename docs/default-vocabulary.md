@@ -152,3 +152,5 @@
 | 토익단어DAY8 | connect | 연결하다 | 파생어: connection, disconnect |
 | 토익단어DAY8 | connection | 연결, 인맥 | 파생어: connect, disconnect |
 | 토익단어DAY8 | disconnect | 연결을 끊다 | 파생어: connect, connection |
+| 토익단어DAY8 | associate | 동료, 관련시키다 | — |
+| 토익단어DAY8 | apologize | 사과하다 | — |
