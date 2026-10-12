@@ -137,3 +137,4 @@
 | 토익단어DAY8 | press | 언론, 누르다 | — |
 | 토익단어DAY8 | estimate | 추정, 추정하다 | 파생어: underestimate |
 | 토익단어DAY8 | underestimate | 과소평가하다 | 파생어: estimate |
+| 토익단어DAY8 | instead | 대신에 | 파생어: instead of |
