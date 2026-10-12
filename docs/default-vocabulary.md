@@ -135,3 +135,5 @@
 | 토익단어DAY8 | outreach | 봉사 활동 | 파생어: reach |
 | 토익단어DAY8 | permit | 허용하다 | — |
 | 토익단어DAY8 | press | 언론, 누르다 | — |
+| 토익단어DAY8 | estimate | 추정, 추정하다 | 파생어: underestimate |
+| 토익단어DAY8 | underestimate | 과소평가하다 | 파생어: estimate |
