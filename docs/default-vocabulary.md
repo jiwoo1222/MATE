@@ -158,3 +158,5 @@
 | 토익단어DAY8 | clearance | 정리, 허가 | 파생어: clear, clarify |
 | 토익단어DAY8 | clarify | 명확하게 하다 | 파생어: clear, clearance |
 | 토익단어DAY8 | author | 저자 | — |
+| 토익단어DAY8 | authorize | 승인하다 | 파생어: authority |
+| 토익단어DAY8 | authority | 당국, 권위자 | 파생어: authorize |
