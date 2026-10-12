@@ -157,3 +157,4 @@
 | 토익단어DAY8 | clear | 분명한 | 파생어: clearance, clarify |
 | 토익단어DAY8 | clearance | 정리, 허가 | 파생어: clear, clarify |
 | 토익단어DAY8 | clarify | 명확하게 하다 | 파생어: clear, clearance |
+| 토익단어DAY8 | author | 저자 | — |
