@@ -20,3 +20,8 @@ test('blank and duplicate rows are blocked before saving', () => {
   assert.match(validateWords([{ en: 'apple', ko: '' }]), /영어와 뜻/);
   assert.match(validateWords([{ en: 'Apple', ko: '사과' }, { en: ' apple ', ko: '사과' }]), /중복/);
 });
+
+test('comma-only meanings cannot create an unanswerable quiz question', () => {
+  assert.match(validateWords([{ en: 'apple', ko: ' , , ' }]), /영어와 뜻/);
+  assert.equal(validateWords([{ en: 'apple', ko: ', 사과, ' }]), '');
+});
