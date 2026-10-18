@@ -7,7 +7,12 @@ export function parseBulkInput(text) {
     if (!line.trim()) return;
     let en, ko, related = '';
     if (line.includes('|')) {
-      [en = '', ko = '', related = ''] = line.split('|').map((part) => part.trim());
+      const columns = line.split('|').map((part) => part.trim());
+      if (columns.length > 3) {
+        invalidLines.push(index + 1);
+        return;
+      }
+      [en = '', ko = '', related = ''] = columns;
     } else {
       const comma = line.indexOf(',');
       en = comma < 0 ? '' : line.slice(0, comma).trim();
